@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace FELVETELI
+{
+    /// <summary>
+    /// Interaction logic for Felvétel.xaml
+    /// </summary>
+    public partial class Felvétel : Window
+    {
+        public Felvétel()
+        {
+            InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnVissza_Click(object sender, RoutedEventArgs e)
+        {
+
+            var windowB = new Felvétel();
+            windowB.Close();
+        }
+
+        private void btnFelvesz_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Sikeres Felvétel");
+        }
+    }
+}
