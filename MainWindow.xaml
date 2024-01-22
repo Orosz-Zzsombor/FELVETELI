@@ -63,7 +63,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid  x:Name="dtgFelveteli"  IsReadOnly="True"  Style="{StaticResource DataGridStyle}"  Grid.Row="0" Grid.ColumnSpan="4" Margin="10" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid  x:Name="dtgFelveteli"  IsReadOnly="True"  Style="{StaticResource DataGridStyle}"  Grid.Row="0" Grid.ColumnSpan="4" Margin="10" >
 
         </DataGrid>
 

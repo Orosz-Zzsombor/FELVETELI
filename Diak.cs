@@ -1,47 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FELVETELI
 {
-    internal class Diak : IFelvetelizo
+    public class Diak : IFelvetelizo
     {
-            private string omAzonosito;
-            private string neve;
-            private string ertesitesiCime;
-            private string email;
-            private DateTime szuletesiDatum;
-            private int matematika;
-            private int magyar;
 
-            public Diak(string csvString)
+        private string omAzonosito;
+        private string neve;
+        private string ertesitesiCime;
+        private string email;
+        private DateTime szuletesiDatum;
+        private int matematika;
+        private int magyar;
+
+        public Diak(string csvString)
+        {
+try
             {
-            string[] adatok = csvString.Split(';');
-            omAzonosito = adatok[0];
-            neve = adatok[1];
-            ertesitesiCime = adatok[2];
-            email = adatok[3];
-            szuletesiDatum = DateTime.Parse(adatok[4]);
-            matematika = adatok[5] == "NULL" ? matematika = -1 : matematika = int.Parse(adatok[5]);
-            magyar = adatok[6] == "NULL" ? magyar = -1 : magyar = int.Parse(adatok[6]);
-            /*
-            if (adatok.Length != 7)
-                {
-                    throw new ArgumentException("Érvénytelen CSV formátum. A CSV sort 7 adatnak kell tartalmaznia.");
-                }
-
-               try
-                {
-
-                }
-                catch (FormatException)
-                {
-                    throw new ArgumentException("Érvénytelen adatformátum a CSV sorban.");
-                }
-            */
+                string[] adatok = csvString.Split(';');
+                omAzonosito = adatok[0];
+                neve = adatok[1];
+                ertesitesiCime = adatok[2];
+                email = adatok[3];
+                szuletesiDatum = DateTime.Parse(adatok[4]);
+                matematika = adatok[5] == "NULL" ? matematika = -1 : matematika = int.Parse(adatok[5]);
+                magyar = adatok[6] == "NULL" ? magyar = -1 : magyar = int.Parse(adatok[6]);
+            }
+            catch (FormatException)
+            {
+                throw new ArgumentException("Érvénytelen adatformátum a CSV sorban.");
+            }
         }
+        
+             public Diak() { }
 
 
             public Diak(string omAzonosito, string neve, string ertesitesiCime, string email, DateTime szuletesiDatum, int matematika, int magyar)
@@ -129,8 +125,8 @@ namespace FELVETELI
                     if (value >= 0 && value <= 50)
                         matematika = value;
                     else
-                        throw new ArgumentException("A matematika pontszám nem lehet negatív.");
-                }
+                    throw new ArgumentException("A pontszámnak 0 és 50 között kell lennie.");
+            }
             }
 
             public int Magyar
@@ -141,8 +137,8 @@ namespace FELVETELI
                     if (value >= 0 && value <= 50)
                         magyar = value;
                     else
-                        throw new ArgumentException("A magyar pontszám nem lehet negatív.");
-                }
+                    throw new ArgumentException("A pontszámnak 0 és 50 között kell lennie.");
+            }
             }
 
             public string CSVSortAdVissza()
@@ -150,10 +146,17 @@ namespace FELVETELI
                 return $"{OM_Azonosito},{Neve},{ErtesitesiCime},{Email},{SzuletesiDatum},{Matematika},{Magyar}";
             }
 
-            public void ModositCSVSorral(string csvString)
+            public void ModositCSVSorral(String csvString)
             {
+            string[] adatok = csvString.Split(';');
+            omAzonosito = adatok[0];
+            neve = adatok[1];
+            ertesitesiCime = adatok[2];
+            email = adatok[3];
+            szuletesiDatum = DateTime.Parse(adatok[4]);
+            matematika = adatok[5] == "NULL" ? matematika = -1 : matematika = int.Parse(adatok[5]);
+            magyar = adatok[6] == "NULL" ? magyar = -1 : magyar = int.Parse(adatok[6]);
 
-
-            }
+        }
         }
 }

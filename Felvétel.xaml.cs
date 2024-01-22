@@ -19,13 +19,17 @@ namespace FELVETELI
     /// </summary>
     public partial class Felvétel : Window
     {
+        Diak felvetelizoAdatai;
         public Felvétel()
         {
             InitializeComponent();
         }
+        public Felvétel(Diak ujdiak) : this()
+        {
+            this.felvetelizoAdatai = ujdiak;
+        }
 
 
-        
 
         private void btnVissza_Click(object sender, RoutedEventArgs e)
         {
@@ -34,7 +38,26 @@ namespace FELVETELI
 
         private void btnFelvesz_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Sikeres Felvétel");
+            try
+            {
+                felvetelizoAdatai.OM_Azonosito = txtAzonosito.Text;
+                felvetelizoAdatai.Neve = txtNev.Text;
+                felvetelizoAdatai.ErtesitesiCime = txtCim.Text;
+                felvetelizoAdatai.Email = txtEmail.Text;
+                felvetelizoAdatai.SzuletesiDatum = Convert.ToDateTime(dpSzuletesiIdo.Text);
+                felvetelizoAdatai.Matematika = int.Parse(txtMatekPontok.Text);
+                felvetelizoAdatai.Magyar = int.Parse(txtMagyarPontok.Text);
+
+                MessageBox.Show("Sikeres Felvétel");
+
+            }
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message);
+
+            }
+
         }
         private void txtRemoveWaterMark(object sender, RoutedEventArgs e)
         {

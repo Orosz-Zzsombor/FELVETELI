@@ -16,6 +16,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using Microsoft.Win32;
 namespace FELVETELI
 {
     /// <summary>
@@ -23,9 +26,11 @@ namespace FELVETELI
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<IFelvetelizo> felveteli = new ObservableCollection<IFelvetelizo>();
         public MainWindow()
         {
             InitializeComponent();
+            dtgFelveteli.ItemsSource = felveteli;
 
 
         }
@@ -33,62 +38,81 @@ namespace FELVETELI
 
 
 
-        private static readonly Regex _regex = new Regex("[^0-9.-]+"); 
+ 
 
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void btnFelvetel_Click(object sender, RoutedEventArgs e) 
-        { 
+        {
 
-
-            var windowB = new Felvétel();
-            windowB.ShowDialog();
+            Diak ujdiak = new Diak();
+            Felvétel ujablak = new Felvétel(ujdiak);
+            ujablak.ShowDialog();
+            if (ujdiak.Neve != null)
+            {
+                felveteli.Add(ujdiak);
+            }
         }
 
         private void btnTorol_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItem = dtgFelveteli.SelectedItem as Diak; if (selectedItem != null) { (dtgFelveteli.ItemsSource as ObservableCollection<Diak>).Remove(selectedItem); }
+
+          
+
+            IEditableCollectionView items = dtgFelveteli.Items; 
+            List<Diak> Torolni = new List<Diak>();
+            foreach (var item in dtgFelveteli.SelectedItems) 
+                {
+                Torolni.Add((Diak)item);
+                }
+
+            foreach (Diak item in Torolni)
+            {
+                if (items.CanRemove)
+                {
+                    items.Remove(dtgFelveteli.SelectedItem);
+                }
+            }
+            dtgFelveteli.ItemsSource = felveteli;
+
+
+            
+            
         }
 
         private void btnImport_Click(object sender, RoutedEventArgs e)
         {
-            List<Diak> Diak = new List<Diak>();
-            File.ReadAllLines("diakNincs.csv").Skip(1).ToList().ForEach(x => Diak.Add(new Diak(x)));
-            if (dtgFelveteli.Items.Count>0)
+            if (MessageBox.Show("Diákok felülírása?", "Megerősítés", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (MessageBox.Show("Diákok felülírása?",
-                "Megerősítés", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
+                felveteli.Clear();
+                
+            }
 
-                    dtgFelveteli.ItemsSource = Diak;
-                    MessageBox.Show("Sikeres importálás");
+           // File.ReadAllLines("diakNincs.csv").Skip(1).ToList().ForEach(x => felveteli.Add(new Diak(x)));
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "csv fajl (*.csv)|*.csv";
+            if (ofd.ShowDialog() == true)
+            {
+                foreach (String fajl in File.ReadAllLines(ofd.FileName).Skip(1))
+                {
+                    felveteli.Add(new Diak(fajl));
                 }
-                else
-                {
-                   
-    
-                 }
             }
-            else
-            {
-                dtgFelveteli.ItemsSource = Diak;
-            }
-
-
 
         }
 
+
+
+
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
-            StreamWriter sw = new StreamWriter("DiakUj.csv");
+            StreamWriter sw = new StreamWriter("DiakUj.csv",false);
+            foreach (Diak item in dtgFelveteli.Items)
+            {
+                sw.WriteLine(item.CSVSortAdVissza());
+            }
+            sw.Close();
         }
     }
 }
