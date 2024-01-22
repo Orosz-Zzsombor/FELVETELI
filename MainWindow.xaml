@@ -5,19 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FELVETELI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-   <Grid Background="#282C34">
+        ResizeMode="NoResize"
+    
+        Title="MiniKifir" Height="500" Width="900">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="DodgerBlue" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Width" Value="130" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style x:Key="DataGridStyle" TargetType="DataGrid" >
+            <Setter Property="Background" Value="#3E4451"/>
+            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="BorderBrush" Value="#2C313A"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="ColumnHeaderHeight" Value="30"/>
+            <Setter Property="RowHeight" Value="25"/>
+
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#007ACC"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="BorderBrush" Value="#2C313A"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="MinWidth" Value="109"/>
+
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#282C34">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <DataGrid Grid.Row="0" Background="#3E4451" BorderBrush="#2C313A" BorderThickness="1" Foreground="White" Margin="10" SelectionChanged="DataGrid_SelectionChanged">
-    
+        <DataGrid  x:Name="dtgFelveteli"  IsReadOnly="True"  Style="{StaticResource DataGridStyle}"  Grid.Row="0" Grid.ColumnSpan="4" Margin="10" SelectionChanged="DataGrid_SelectionChanged">
+
         </DataGrid>
 
-        <Button x:Name="btnFelvetel" Content="Diák hozzáadása" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="DodgerBlue" Foreground="White" FontSize="16" FontWeight="Bold" Height="40" Width="120" Margin="10" Cursor="Hand">
-           
+        <Button x:Name="btnFelvetel" Content="DIÁK HOZZÁADÁSA" Grid.Row="1"  Click="btnFelvetel_Click"  Style="{StaticResource ButtonStyle}">
+
+
         </Button>
+        <Button x:Name="btnTorol" Content="TÖRLÉS" Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}" Click="btnTorol_Click"></Button>
+        <Button x:Name="btnExport" Content="EXPORTÁLÁS" Grid.Row="1" Grid.Column="2" Style="{StaticResource ButtonStyle}" Click="btnExport_Click"></Button>
+        <Button x:Name="btnImport" Content="IMPORTÁLÁS" Grid.Row="1" Grid.Column="3" Style="{StaticResource ButtonStyle}" Click="btnImport_Click"></Button>
     </Grid>
 </Window>

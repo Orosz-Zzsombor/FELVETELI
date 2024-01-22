@@ -1,0 +1,25 @@
+OM_azonosito;Nev;Ertesitesi_cim;Email;Szuletesi_datum;matek_eredmeny;magyar_eredmeny
+109781234;Simon Balázs;Ferenc tér 17.;simon.balazs@example.com;2009-10-10;39;28
+109876543;Szűcs Balázs;Deák tér 6.;szucs.balazs@example.com;2007-08-07;25;33
+123456789;Kovács János;Elmúlt utca 5.;kovacs.janos@example.com;2008-03-12;35;42
+198765432;Takács Erika;Berzsenyi utca 20.;takacs.erika@example.com;2009-04-12;29;35
+210987654;Kovács Réka;Szabadság utca 9.;kovacs.reka@example.com;2010-01-22;38;41
+234567890;Nagy Anna;Virágos tér 12.;nagy.anna@example.com;2009-07-24;25;38
+321098765;Németh Péter;Dózsa tér 18.;nemeth.peter@example.com;2008-05-16;46;29
+345678901;Kiss Márton;Béke utca 8.;kiss.marton@example.com;2007-11-05;48;29
+432109876;Papp Andrea;Bajnai utca 23.;papp.andrea@example.com;2007-02-09;32;27
+456789012;Szabó Eszter;Szent István tér 3.;szabo.eszter@example.com;2010-06-18;37;44
+543210987;Balogh István;Kölcsey utca 4.;balogh.istvan@example.com;2009-10-03;27;36
+567890123;Varga Péter;Fő utca 21.;varga.peter@example.com;2007-09-30;50;18
+654312345;Mészáros András;Teleki tér 3.;meszaros.andras@example.com;2007-08-02;45;41
+654321098;Fekete Mónika;Arany utca 11.;fekete.monika@example.com;2007-06-27;43;49
+678901234;Kis Péter;Kossuth utca 10.;kis.peter@example.com;2008-09-15;NULL;NULL
+765412345;Gál Éva;Szigeti utca 14.;gal.eva@example.com;2010-01-19;38;47
+765432109;Király Zsuzsa;Hunyadi tér 16.;kiraly.zsuzsa@example.com;2010-03-31;38;40
+789012345;Tóth Anna;Ady utca 7.;toth.anna@example.com;2007-12-03;NULL;NULL
+876512345;Kocsis Gábor;Kőrösi utca 8.;kocsis.gabor@example.com;2008-05-25;22;39
+876543210;Szalai Gergő;Vörösmarty utca 7.;szalai.gergo@example.com;2008-09-14;NULL;NULL
+890123456;Molnár Gábor;Petőfi tér 14.;molnar.gabor@example.com;2007-04-28;42;37
+901234567;Horváth Katalin;Károly utca 2.;horvath.katalin@example.com;2009-11-10;30;48
+987612345;Bíró Anikó;Vásárhelyi tér 12.;biro.aniko@example.com;2007-02-18;31;50
+987654321;Pintér László;Rákóczi tér 5.;pinter.laszlo@example.com;2007-11-28;NULL;NULL

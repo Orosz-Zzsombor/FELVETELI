@@ -5,98 +5,159 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FELVETELI"
         mc:Ignorable="d"
-        Title="Felvétel" Height="400" Width="800">
-    
+        Title="Felvétel" Height="400" Width="1000">
+
     <Window.Resources>
-        
-        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
-        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
-        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-        <Style x:Key="TextBoxStyleKek" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="DodgerBlue"/>
-            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="AllowDrop" Value="true"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <MultiTrigger>
-                    <MultiTrigger.Conditions>
-                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                        <Condition Property="IsSelectionActive" Value="false"/>
-                    </MultiTrigger.Conditions>
-                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                </MultiTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="TextBlockStyleGabor" TargetType="{x:Type TextBlock}">
-            <Setter Property="TextWrapping" Value="NoWrap"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="TextTrimming" Value="None"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="0 50 0 0"/>
+        <Style x:Key="ModernTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="0,5" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#007ACC" />
+            <Setter Property="Background" Value="#3E4451" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="Width" Value="350" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+
 
         </Style>
-        
+
+        <Style x:Key="PontokTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="0,5" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#007ACC" />
+            <Setter Property="Background" Value="#3E4451" />
+            <Setter Property="Foreground" Value="LightGray" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="Width" Value="160" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+
+
+        </Style>
+
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+
+            <Setter Property="Background" Value="#007ACC" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Height" Value="100" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="#3E4451" />
+            <Setter Property="BorderThickness" Value="3" />
+
+        </Style>
+
+        <Style x:Key="ModernTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,5" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="#000000" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style x:Key="ModernDatePickerStyle" TargetType="DatePicker">
+            <Setter Property="Margin" Value="0,5" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#007ACC" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="Width" Value="350" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Style.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="Background" Value="Transparent"/>
+
+                </Style>
+            </Style.Resources>
+        </Style>
+
     </Window.Resources>
+    <Grid Background="#282C34">
 
-    <Grid Background="#3E4451">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Style="{DynamicResource TextBlockStyleGabor}" Grid.Row="1" Text="OM azonosító"></TextBlock>
-        <TextBox Style="{DynamicResource TextBoxStyleKek}" x:Name="txtOMazonosito" Grid.Row="1" Grid.Column="0" ></TextBox>
-        <TextBlock Style="{DynamicResource TextBlockStyleGabor}" Grid.Row="2" Grid.Column="1" Text="Név"></TextBlock>
-        <TextBox Style="{DynamicResource TextBoxStyleKek}" x:Name="txtNev" Grid.Row="1" Grid.Column="1"></TextBox>
-     <TextBlock Style="{DynamicResource TextBlockStyleGabor}" Grid.Row="2" Grid.Column="2" Text="Email"></TextBlock>
-        <TextBox Style="{DynamicResource TextBoxStyleKek}" x:Name="txtEmail" Grid.Row="1" Grid.Column="2" ></TextBox>
-     <TextBlock Style="{DynamicResource TextBlockStyleGabor}" Grid.Row="2" Grid.Column="3" Text="Születési Idő"></TextBlock>
-        <DatePicker x:Name="dpSzuletes" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"></DatePicker>
-     <TextBlock Style="{DynamicResource TextBlockStyleGabor}" Grid.Row="2" Grid.Column="4" Text="Cím"></TextBlock>
-        <TextBox Style="{DynamicResource TextBoxStyleKek}"  x:Name="txtErtesites" Grid.Row="1" Grid.Column="4"></TextBox>
-        <TextBox Style="{DynamicResource TextBoxStyleKek}" x:Name="txtMatek"  Grid.Row="1" Grid.Column="5"></TextBox>
-        <TextBox Style="{DynamicResource TextBoxStyleKek}" x:Name="txtMagyar" Grid.Row="1" Grid.Column="6"></TextBox>
-        <Button Grid.Row="1" Grid.Column="6" Background="DodgerBlue" Content="Vissza" Height="40" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Button>
+        <Border Background="#007ACC" VerticalAlignment="Top" Height="50">
+            <TextBlock Text="Diákok felvétele" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="18"/>
+        </Border>
 
 
+        <Grid Margin="20,70,20,20" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <StackPanel Grid.Column="0" Margin="0,0,10,10">
+                <TextBlock Text="Név:" Style="{StaticResource ModernTextBlockStyle}"/>
+                <TextBox x:Name="txtNev" Style="{StaticResource ModernTextBoxStyle}" Text="Gipsz Jakab" GotFocus="txtRemoveWaterMark"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,10,10">
+                <TextBlock Text="Email:" Style="{StaticResource ModernTextBlockStyle}"/>
+
+                <TextBox x:Name="txtEmail" Style="{StaticResource ModernTextBoxStyle}" Text="example@gmail.com"  GotFocus="txtRemoveWaterMark"/>
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="0" Margin="0,0,10,10" Grid.Row="2">
+                <TextBlock Text="Cím:" Style="{StaticResource ModernTextBlockStyle}"/>
+                <TextBox x:Name="txtCim" Style="{StaticResource ModernTextBoxStyle}" Text="Debrecen, Széchenyi u. 58."  GotFocus="txtRemoveWaterMark"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="0,0,0,10">
+                <TextBlock Text="OM azonosító:" Style="{StaticResource ModernTextBlockStyle}"/>
+                <TextBox x:Name="txtAzonosito" Style="{StaticResource ModernTextBoxStyle}" Text="62519514862"  GotFocus="txtRemoveWaterMark"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="0,0,0,10" Grid.Row="1">
+                <TextBlock Text="Születési idő:" Style="{StaticResource ModernTextBlockStyle}"/>
+                <DatePicker x:Name="dpSzuletesiIdo" Style="{StaticResource ModernDatePickerStyle}" SelectedDate="2008-10-01" Background="#3E4451"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="0,0,0,10" Grid.Row="2">
+                <TextBlock Text="Magyar pontok:" Style="{StaticResource ModernTextBlockStyle}"/>
+                <TextBox x:Name="txtMagyarPontok" Style="{StaticResource PontokTextBoxStyle}" Text="50"  GotFocus="txtRemoveWaterMark"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="0,0,0,10" Grid.Row="2" HorizontalAlignment="Right">
+                <TextBlock Text="Matek pontok:" Style="{StaticResource ModernTextBlockStyle}"/>
+                <TextBox x:Name="txtMatekPontok" Style="{StaticResource PontokTextBoxStyle}" Text="50" GotFocus="txtRemoveWaterMark"/>
+            </StackPanel>
+
+
+
+
+
+
+
+
+
+            <Button Grid.Column="1"  x:Name="btnFelvesz" Content="FELVÉTEL" Style="{StaticResource ModernButtonStyle}" Click="btnFelvesz_Click" />
+
+            <Button Grid.Column="1" x:Name="btnVissza" Grid.Row="2" Style="{StaticResource ModernButtonStyle}" Content="VISSZA" Click="btnVissza_Click"/>
+
+
+
+
+        </Grid>
     </Grid>
 </Window>
