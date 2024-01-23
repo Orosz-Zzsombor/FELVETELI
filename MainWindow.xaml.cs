@@ -35,13 +35,6 @@ namespace FELVETELI
 
         }
 
-
-
-
- 
-
-
-
         private void btnFelvetel_Click(object sender, RoutedEventArgs e) 
         {
 
@@ -109,12 +102,22 @@ namespace FELVETELI
 
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
-            StreamWriter sw = new StreamWriter("DiakUj.csv",false);
-            foreach (Diak item in dtgFelveteli.Items)
+            try
             {
-                sw.WriteLine(item.CSVSortAdVissza());
+                StreamWriter sw = new StreamWriter("DiakUj.csv", false);
+                foreach (Diak item in dtgFelveteli.Items)
+                {
+                    sw.WriteLine(item.CSVSortAdVissza());
+                }
+                sw.Close();
+                MessageBox.Show("Sikeres exportálás");
             }
-            sw.Close();
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message);
+            }
+         
         }
     }
 }
