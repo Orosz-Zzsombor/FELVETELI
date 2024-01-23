@@ -23,16 +23,17 @@
             <Setter Property="Cursor" Value="Hand" />
         </Style>
 
-        <Style x:Key="DataGridStyle" TargetType="DataGrid" >
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
             <Setter Property="Background" Value="#3E4451"/>
             <Setter Property="Foreground" Value="DarkBlue"/>
             <Setter Property="BorderBrush" Value="#2C313A"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="ColumnHeaderHeight" Value="30"/>
             <Setter Property="RowHeight" Value="25"/>
-
+            <Setter Property="AutoGenerateColumns" Value="True"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
 
 
             <Setter Property="ColumnHeaderStyle">
@@ -44,10 +45,11 @@
                         <Setter Property="BorderThickness" Value="1"/>
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="MinWidth" Value="109"/>
-
+                        <Setter Property="MinWidth" Value="125"/>
+                  
                     </Style>
                 </Setter.Value>
+            
             </Setter>
         </Style>
     </Window.Resources>

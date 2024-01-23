@@ -47,8 +47,10 @@ namespace FELVETELI
                 felvetelizoAdatai.SzuletesiDatum = Convert.ToDateTime(dpSzuletesiIdo.Text);
                 felvetelizoAdatai.Matematika = int.Parse(txtMatekPontok.Text);
                 felvetelizoAdatai.Magyar = int.Parse(txtMagyarPontok.Text);
-
                 MessageBox.Show("Sikeres Felvétel");
+                this.Close() ;
+
+       
 
             }
             catch (Exception error)

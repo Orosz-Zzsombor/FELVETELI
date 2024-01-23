@@ -82,13 +82,15 @@ namespace FELVETELI
 
         private void btnImport_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Diákok felülírása?", "Megerősítés", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (dtgFelveteli.Items.Count > 0)
             {
-                felveteli.Clear();
-                
-            }
+                if (MessageBox.Show("Diákok felülírása?", "Megerősítés", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    felveteli.Clear();
 
-           // File.ReadAllLines("diakNincs.csv").Skip(1).ToList().ForEach(x => felveteli.Add(new Diak(x)));
+                }
+              
+            }
 
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "csv fajl (*.csv)|*.csv";

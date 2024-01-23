@@ -63,19 +63,26 @@ try
                 }
             }
 
-            public string Neve
+        public string Neve
+        {
+            get => neve;
+            set
             {
-                get => neve;
-                set
+                if (!string.IsNullOrWhiteSpace(value) && !value.Any(char.IsDigit))
                 {
-                    if (!string.IsNullOrWhiteSpace(value))
+                    if (value.Contains(" ") && value.Split(" ").Length >= 2)
                         neve = value;
                     else
-                        throw new ArgumentException("A név nem lehet üres.");
+                        throw new ArgumentException("A névnek legalább két szót kell tartalmaznia.");
+                }
+                else
+                {
+                    throw new ArgumentException("A név nem lehet üres / nem tartalmazhat számot.");
                 }
             }
+        }
 
-            public string ErtesitesiCime
+        public string ErtesitesiCime
             {
                 get => ertesitesiCime;
                 set
