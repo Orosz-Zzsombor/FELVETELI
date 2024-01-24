@@ -20,7 +20,7 @@ namespace FELVETELI
 
         public Diak(string csvString)
         {
-try
+            try
             {
                 string[] adatok = csvString.Split(';');
                 omAzonosito = adatok[0];
@@ -56,7 +56,7 @@ try
                 get => omAzonosito;
                 set
                 {
-                    if (value.All(char.IsDigit) && value.Length == 11)
+                    if (value.All(char.IsDigit) && value.Length == 11 )
                         omAzonosito = value;
                     else
                         throw new ArgumentException("Az OM azonosítónak 11 számjegyből kell állnia.");
@@ -81,7 +81,24 @@ try
                 }
             }
         }
+        public string Email
+        {
+            get => email; set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
 
+                    if (value.Contains("@") && value.Contains("."))
+                        email = value;
+                    else
+                        throw new ArgumentException("Érvénytelen e-mail cím formátum.");
+                }
+                else
+                {
+                    throw new ArgumentException("Az e-mail cím nem lehet üres.");
+                }
+            }
+        }
         public string ErtesitesiCime
             {
                 get => ertesitesiCime;
@@ -94,37 +111,31 @@ try
                 }
             }
 
-            public string Email
-            {
-                get => email; set
-                {
-                    if (!string.IsNullOrWhiteSpace(value))
-                    {
-
-                        if (value.Contains("@") && value.Contains("."))
-                            email = value;
-                        else
-                            throw new ArgumentException("Érvénytelen e-mail cím formátum.");
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Az e-mail cím nem lehet üres.");
-                    }
-                }
-            }
+  
             public DateTime SzuletesiDatum
             {
                 get => szuletesiDatum;
                 set
                 {
-                    if (value >= new DateTime(1980, 1, 1) && value <= DateTime.Now)
+                    if (value >= new DateTime(2000, 1, 1) && value <= new DateTime(2010,1,1))
                         szuletesiDatum = value;
                     else
                         throw new ArgumentException("Érvénytelen születési dátum.");
                 }
             }
 
-            public int Matematika
+        public int Magyar
+        {
+            get => magyar;
+            set
+            {
+                if (value >= 0 && value <= 50)
+                    magyar = value;
+                else
+                    throw new ArgumentException("A pontszámnak 0 és 50 között kell lennie.");
+            }
+        }
+        public int Matematika
             {
                 get => matematika;
                 set
@@ -133,20 +144,9 @@ try
                         matematika = value;
                     else
                     throw new ArgumentException("A pontszámnak 0 és 50 között kell lennie.");
-            }
+                 }
             }
 
-            public int Magyar
-            {
-                get => magyar;
-                set
-                {
-                    if (value >= 0 && value <= 50)
-                        magyar = value;
-                    else
-                    throw new ArgumentException("A pontszámnak 0 és 50 között kell lennie.");
-            }
-            }
 
             public string CSVSortAdVissza()
             {

@@ -53,6 +53,7 @@
             </Setter>
         </Style>
     </Window.Resources>
+  
     <Grid Background="#282C34">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -63,18 +64,18 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid  x:Name="dtgFelveteli"  IsReadOnly="True"  Style="{StaticResource DataGridStyle}"  Grid.Row="0" Grid.ColumnSpan="4" Margin="10" >
+        <DataGrid  x:Name="dtgFelveteli"  IsReadOnly="True"  Style="{StaticResource DataGridStyle}"  Grid.Row="0" Grid.ColumnSpan="5" Margin="10" >
 
         </DataGrid>
 
-        <Button x:Name="btnFelvetel" Content="DIÁK HOZZÁADÁSA" Grid.Row="1"  Click="btnFelvetel_Click"  Style="{StaticResource ButtonStyle}">
-
-
-        </Button>
-        <Button x:Name="btnTorol" Content="TÖRLÉS" Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}" Click="btnTorol_Click"></Button>
-        <Button x:Name="btnExport" Content="EXPORTÁLÁS" Grid.Row="1" Grid.Column="2" Style="{StaticResource ButtonStyle}" Click="btnExport_Click"></Button>
-        <Button x:Name="btnImport" Content="IMPORTÁLÁS" Grid.Row="1" Grid.Column="3" Style="{StaticResource ButtonStyle}" Click="btnImport_Click"></Button>
+        <Button x:Name="btnFelvetel" Content="DIÁK HOZZÁADÁSA" Grid.Row="1"  Click="btnFelvetel_Click"  Style="{StaticResource ButtonStyle}"></Button>
+        <Button x:Name="btnModosit" Content="MÓDOSÍTÁS" Grid.Row="1" Grid.Column="1"  Style="{StaticResource ButtonStyle}" Click="btnModosit_Click"></Button>
+        <Button x:Name="btnTorol" Content="TÖRLÉS" Grid.Row="1" Grid.Column="2" Style="{StaticResource ButtonStyle}" Click="btnTorol_Click"></Button>
+        <Button x:Name="btnExport" Content="EXPORTÁLÁS" Grid.Row="1" Grid.Column="3" Style="{StaticResource ButtonStyle}" Click="btnExport_Click"></Button>
+        <Button x:Name="btnImport" Content="IMPORTÁLÁS" Grid.Row="1" Grid.Column="4" Style="{StaticResource ButtonStyle}" Click="btnImport_Click"></Button>
     </Grid>
+
 </Window>

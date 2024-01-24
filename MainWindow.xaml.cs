@@ -19,6 +19,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using Microsoft.Win32;
+using System.Text.Json;
+using System.Text.Encodings.Web;
+
 namespace FELVETELI
 {
     /// <summary>
@@ -40,6 +43,7 @@ namespace FELVETELI
 
             Diak ujdiak = new Diak();
             Felvétel ujablak = new Felvétel(ujdiak);
+            ujablak.Title = "Adatok felvétele";
             ujablak.ShowDialog();
             if (ujdiak.Neve != null)
             {
@@ -49,9 +53,6 @@ namespace FELVETELI
 
         private void btnTorol_Click(object sender, RoutedEventArgs e)
         {
-
-          
-
             IEditableCollectionView items = dtgFelveteli.Items; 
             List<Diak> Torolni = new List<Diak>();
             foreach (var item in dtgFelveteli.SelectedItems) 
@@ -66,10 +67,7 @@ namespace FELVETELI
                     items.Remove(dtgFelveteli.SelectedItem);
                 }
             }
-            dtgFelveteli.ItemsSource = felveteli;
-
-
-            
+            dtgFelveteli.ItemsSource = felveteli;        
             
         }
 
@@ -96,14 +94,19 @@ namespace FELVETELI
             }
 
         }
-
-
-
-
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
+
+            //var opciok = new JsonSerializerOptions();
+            //opciok.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            //opciok.WriteIndented = true;
+            //string adatokSorai = JsonSerializer.Serialize(felveteli, opciok);
+            //var lista = new List<String>();
+            //lista.Add(adatokSorai);
+
             try
             {
+  
                 StreamWriter sw = new StreamWriter("DiakUj.csv", false);
                 foreach (Diak item in dtgFelveteli.Items)
                 {
@@ -119,5 +122,26 @@ namespace FELVETELI
             }
          
         }
-    }
+
+        private void btnModosit_Click(object sender, RoutedEventArgs e)
+        {
+           if (dtgFelveteli.SelectedItem != null)
+            {
+                Diak ujdiak = new Diak();
+                Felvétel ujablak = new Felvétel(ujdiak);
+                     ujablak.Title = "Adatok módosítása";
+                ujablak.txtNev.Text = dtgFelveteli.SelectedItems[0].ToString();
+                ujablak.ShowDialog();
+           
+            }
+            else
+            {
+                MessageBox.Show("Nincs kiválasztott adat a listában!");
+            }
+
+            
+
+
+            }
+        }
 }

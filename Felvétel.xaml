@@ -20,8 +20,6 @@
             <Setter Property="Width" Value="350" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
-
-
         </Style>
 
         <Style x:Key="PontokTextBoxStyle" TargetType="TextBox">
@@ -85,6 +83,7 @@
         </Style>
 
     </Window.Resources>
+
     <Grid Background="#282C34">
 
         <Border Background="#007ACC" VerticalAlignment="Top" Height="50">
@@ -160,4 +159,5 @@
 
         </Grid>
     </Grid>
+
 </Window>
