@@ -1,0 +1,25 @@
+OM_azonosito;Nev;Ertesitesi_cim;Email;Szuletesi_datum;matek_eredmeny;magyar_eredmeny
+10978123421;Simon Balázs;Ferenc tér 17.;simon.balazs@example.com;2009.10.10;39;28
+16109876543;Szűcs Balázs;Deák tér 6.;szucs.balazs@example.com;2007.08.07;25;33
+41123456789;Kovács János;Elmúlt utca 5.;kovacs.janos@example.com;2008.03.12;35;42
+93198765432;Takács Erika;Berzsenyi utca 20.;takacs.erika@example.com;2009.04.12;29;35
+21098765431;Kovács Réka;Szabadság utca 9.;kovacs.reka@example.com;2010.01.22;38;41
+23456789052;Nagy Anna;Virágos tér 12.;nagy.anna@example.com;2009.07.24;25;38
+32109876517;Németh Péter;Dózsa tér 18.;nemeth.peter@example.com;2008.05.16;46;29
+34567890162;Kiss Márton;Béke utca 8.;kiss.marton@example.com;2007.11.05;48;29
+43210987682;Papp Andrea;Bajnai utca 23.;papp.andrea@example.com;2007.02.09;32;27
+45678901218;Szabó Eszter;Szent István tér 3.;szabo.eszter@example.com;2010.06.18;37;44
+54321098729;Balogh István;Kölcsey utca 4.;balogh.istvan@example.com;2009.10.03;27;36
+56789012315;Varga Péter;Fő utca 21.;varga.peter@example.com;2007.09.30;50;18
+65431234541;Mészáros András;Teleki tér 3.;meszaros.andras@example.com;2007.08.02;45;41
+65432109881;Fekete Mónika;Arany utca 11.;fekete.monika@example.com;2007.06.27;43;49
+67890123448;Kis Péter;Kossuth utca 10.;kis.peter@example.com;2008.09.15;NULL;NULL
+76541234516;Gál Éva;Szigeti utca 14.;gal.eva@example.com;2010.01.19;38;47
+76543210918;Király Zsuzsa;Hunyadi tér 16.;kiraly.zsuzsa@example.com;2010.03.31;38;40
+78901234516;Tóth Anna;Ady utca 7.;toth.anna@example.com;2007.12.03;NULL;NULL
+87651234514;Kocsis Gábor;Kőrösi utca 8.;kocsis.gabor@example.com;2008.05.25;22;39
+87654321018;Szalai Gergő;Vörösmarty utca 7.;szalai.gergo@example.com;2008.09.14;NULL;NULL
+89012345617;Molnár Gábor;Petőfi tér 14.;molnar.gabor@example.com;2007.04.28;42;37
+90123456716;Horváth Katalin;Károly utca 2.;horvath.katalin@example.com;2009.11.10;30;48
+98761234515;Bíró Anikó;Vásárhelyi tér 12.;biro.aniko@example.com;2007.02.18;31;50
+98765432115;Pintér László;Rákóczi tér 5.;pinter.laszlo@example.com;2007.11.28;NULL;NULL

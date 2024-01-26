@@ -56,7 +56,7 @@ namespace FELVETELI
                 get => omAzonosito;
                 set
                 {
-                    if (value.All(char.IsDigit) && value.Length == 9 )
+                    if (value.All(char.IsDigit) && value.Length == 11 )
                         omAzonosito = value;
                     else
                         throw new ArgumentException("Az OM azonosítónak 11 számjegyből kell állnia.",nameof(OM_Azonosito));
