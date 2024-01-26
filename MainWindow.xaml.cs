@@ -123,28 +123,17 @@ namespace FELVETELI
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.OverwritePrompt = true;
-
-            // Set the default file extension
             saveFileDialog.DefaultExt = "csv";
-            // Set the file filters
             saveFileDialog.Filter = "csv fajl (*.csv)|*.csv|JSON fajl (*.json)|*.json";
-            // Set the initial directory (optional)
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-
             var opciok = new JsonSerializerOptions();
             opciok.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
             opciok.WriteIndented = true;
             string adatokSorai = JsonSerializer.Serialize(felveteli, opciok);
             var lista = new List<String>();
             lista.Add(adatokSorai);
-
-
-
-            // Check if the user clicked the "Save" button
             if (saveFileDialog.ShowDialog() == true)
             {
-                // Get the selected file name
                 string fileName = saveFileDialog.FileName;
                 string fileExtension = Path.GetExtension(fileName);
 
@@ -153,25 +142,19 @@ namespace FELVETELI
                     File.WriteAllLines(fileName, lista);
                 }
                 else if (fileExtension.ToLower() == ".csv")
-                {
-              
+                {      
                         StreamWriter sw = new StreamWriter(fileName, false);
                         foreach (Diak item in dtgFelveteli.Items)
                         {
                             sw.WriteLine(item.CSVSortAdVissza());
                         }
-                        sw.Close();
-
-                    
+                        sw.Close();                 
                 }
-
-
-
-                MessageBox.Show($"File saved successfully: {fileName}", "Save Successful", MessageBoxButton.OK);
+                MessageBox.Show($"Fájl sikeresen elmentve: {fileName}", "Sikeres Mentés", MessageBoxButton.OK);
             }
             else
             {
-                MessageBox.Show("File saving canceled by the user.", "Save Canceled", MessageBoxButton.OK);
+                MessageBox.Show("A fájl mentését a felhasználó megszakította.", "Mentés megszakítva", MessageBoxButton.OK);
             }
 
 
