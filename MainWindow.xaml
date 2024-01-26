@@ -9,6 +9,11 @@
         Icon="Images/title.ico"
         Title="MiniKifir" Height="500" Width="950">
     <Window.Resources>
+        <LinearGradientBrush x:Key="StyleGradient"  EndPoint="0.3,1" StartPoint="0.2,0">
+            <GradientStop Color="#373f51" Offset="0" />
+            <GradientStop Color="#424c55" Offset="1" />
+
+        </LinearGradientBrush>
         <LinearGradientBrush x:Key="buttonStyleGradient"  EndPoint="0.3,1" StartPoint="0.3,0">
             <GradientStop Color="DodgerBlue" Offset="0" />
             <GradientStop Color="#00308F" Offset="1" />
@@ -29,7 +34,7 @@
         </Style>
 
         <Style x:Key="DataGridStyle" TargetType="DataGrid">
-            <Setter Property="Background" Value="#3E4451"/>
+            <Setter Property="Background"  Value="{StaticResource StyleGradient}"/>
             <Setter Property="Foreground" Value="DarkBlue"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="BorderBrush" Value="#2C313A"/>
