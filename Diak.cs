@@ -56,10 +56,10 @@ namespace FELVETELI
                 get => omAzonosito;
                 set
                 {
-                    if (value.All(char.IsDigit) && value.Length == 11 )
+                    if (value.All(char.IsDigit) && value.Length == 9 )
                         omAzonosito = value;
                     else
-                        throw new ArgumentException("Az OM azonosítónak 11 számjegyből kell állnia.");
+                        throw new ArgumentException("Az OM azonosítónak 11 számjegyből kell állnia.",nameof(OM_Azonosito));
                 }
             }
 
@@ -70,32 +70,48 @@ namespace FELVETELI
             {
                 if (!string.IsNullOrWhiteSpace(value) && !value.Any(char.IsDigit))
                 {
-                    if (value.Contains(" ") && value.Split(" ").Length >= 2)
+                    string[] words = value.Split(" ");
+
+                    if (words.Length >= 2 && words.All(word => char.IsUpper(word[0])))
+                    {
+                
+                        if (value.Contains("  "))
+                        {
+                            throw new ArgumentException("Nem megengedett dupla szóköz a névben.", nameof(Neve));
+                        }
+
                         neve = value;
+                    }
                     else
-                        throw new ArgumentException("A névnek legalább két szót kell tartalmaznia.");
+                    {
+                        throw new ArgumentException("A névnek legalább két szóból kell álljon, és minden szónak nagybetűvel kell kezdődnie.", nameof(Neve));
+                    }
                 }
                 else
                 {
-                    throw new ArgumentException("A név nem lehet üres / nem tartalmazhat számot.");
+                    throw new ArgumentException("A név nem lehet üres / nem tartalmazhat számot.", nameof(Neve));
                 }
             }
         }
         public string Email
         {
-            get => email; set
+            get => email;
+            set
             {
                 if (!string.IsNullOrWhiteSpace(value))
                 {
-
-                    if (value.Contains("@") && value.Contains("."))
+                    if (value.Count(c => c == '@') == 1 && !value.Contains(" ") && value.Contains("."))
+                    {
                         email = value;
+                    }
                     else
-                        throw new ArgumentException("Érvénytelen e-mail cím formátum.");
+                    {
+                        throw new ArgumentException("Érvénytelen e-mail cím formátum.", nameof(Email));
+                    }
                 }
                 else
                 {
-                    throw new ArgumentException("Az e-mail cím nem lehet üres.");
+                    throw new ArgumentException("Az e-mail cím nem lehet üres.", nameof(Email));
                 }
             }
         }
@@ -107,7 +123,7 @@ namespace FELVETELI
                     if (!string.IsNullOrWhiteSpace(value))
                         ertesitesiCime = value;
                     else
-                        throw new ArgumentException("Az értesítési cím nem lehet üres.");
+                        throw new ArgumentException("Az értesítési cím nem lehet üres.",nameof(ErtesitesiCime));
                 }
             }
 
@@ -117,10 +133,10 @@ namespace FELVETELI
                 get => szuletesiDatum;
                 set
                 {
-                    if (value >= new DateTime(2000, 1, 1) && value <= new DateTime(2010,1,1))
+                    if (value >= new DateTime(2000, 1, 1) && value <= new DateTime(2013,1,1))
                         szuletesiDatum = value;
                     else
-                        throw new ArgumentException("Érvénytelen születési dátum.");
+                        throw new ArgumentException("Érvénytelen születési dátum.", nameof(SzuletesiDatum));
                 }
             }
 
@@ -129,10 +145,10 @@ namespace FELVETELI
             get => magyar;
             set
             {
-                if (value >= 0 && value <= 50)
+                if (value >= -1 && value <= 50 && !string.IsNullOrWhiteSpace(Convert.ToString(value)))
                     magyar = value;
                 else
-                    throw new ArgumentException("A pontszámnak 0 és 50 között kell lennie.");
+                    throw new ArgumentException("A pontszámnak 0 és 50 között kell lennie.", nameof(Magyar));
             }
         }
         public int Matematika
@@ -140,17 +156,17 @@ namespace FELVETELI
                 get => matematika;
                 set
                 {
-                    if (value >= 0 && value <= 50)
+                    if (value >= -1 && value <= 50 && !string.IsNullOrWhiteSpace(Convert.ToString(value)))
                         matematika = value;
                     else
-                    throw new ArgumentException("A pontszámnak 0 és 50 között kell lennie.");
+                    throw new ArgumentException("A pontszámnak 0 és 50 között kell lennie.", nameof(Matematika));
                  }
             }
 
 
             public string CSVSortAdVissza()
             {
-                return $"{OM_Azonosito},{Neve},{ErtesitesiCime},{Email},{SzuletesiDatum},{Matematika},{Magyar}";
+                return $"{OM_Azonosito};{Neve};{ErtesitesiCime};{Email};{SzuletesiDatum};{Matematika};{Magyar}";
             }
 
             public void ModositCSVSorral(String csvString)

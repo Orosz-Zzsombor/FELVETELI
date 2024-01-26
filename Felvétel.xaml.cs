@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,8 +29,19 @@ namespace FELVETELI
         {
             this.felvetelizoAdatai = ujdiak;
         }
-
-
+        public Felvétel(Diak diak, bool modositas = false)
+        {
+            InitializeComponent();
+            txtAzonosito.Text = diak.OM_Azonosito;
+            txtNev.Text = diak.Neve;
+            txtCim.Text = diak.ErtesitesiCime;
+            txtEmail.Text = diak.Email;
+            dpSzuletesiIdo.Text = diak.SzuletesiDatum.ToString("yyyy.MM.dd");
+            txtMatekPontok.Text = diak.Matematika.ToString();
+            txtMagyarPontok.Text = diak.Magyar.ToString();
+            felvetelizoAdatai = diak;
+        }
+     
 
         private void btnVissza_Click(object sender, RoutedEventArgs e)
         {
@@ -47,19 +59,104 @@ namespace FELVETELI
                 felvetelizoAdatai.SzuletesiDatum = Convert.ToDateTime(dpSzuletesiIdo.Text);
                 felvetelizoAdatai.Matematika = int.Parse(txtMatekPontok.Text);
                 felvetelizoAdatai.Magyar = int.Parse(txtMagyarPontok.Text);
-                MessageBox.Show("Sikeres Felvétel");
+          
                 this.Close() ;
-
-       
 
             }
             catch (Exception error)
             {
 
-                MessageBox.Show($"{error.Message}" );
-             
+                HibaKezelo(error);
+
             }
 
+        }
+        private void btnModosit_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {   
+                felvetelizoAdatai.Neve = txtNev.Text;
+                felvetelizoAdatai.ErtesitesiCime = txtCim.Text;
+                felvetelizoAdatai.Email = txtEmail.Text;
+                felvetelizoAdatai.SzuletesiDatum = Convert.ToDateTime(dpSzuletesiIdo.Text);
+                felvetelizoAdatai.Matematika = int.Parse(txtMatekPontok.Text);
+                felvetelizoAdatai.Magyar = int.Parse(txtMagyarPontok.Text);
+                MessageBox.Show("Sikeres módosítás");
+                this.Close();
+            
+
+            }
+            catch (Exception error)
+            {
+                HibaKezelo(error);
+            }
+          
+        }
+ 
+        private void HibaKezelo(Exception error)
+        {
+            StringBuilder errorMessages = new StringBuilder("Hoppá!:\n");
+            if (error is ArgumentException && error.Message.Contains("Neve"))
+            {
+                txtNev.BorderBrush = Brushes.Red;
+                errorMessages.AppendLine("Név: " + error.Message);
+            }
+            if (error is ArgumentException && error.Message.Contains("Email"))
+            {
+                txtEmail.BorderBrush = Brushes.Red;
+                errorMessages.AppendLine("Email: " + error.Message);
+            }
+            if (error is ArgumentException && error.Message.Contains("ErtesitesiCime"))
+            {
+                txtCim.BorderBrush = Brushes.Red;
+                errorMessages.AppendLine("Értesitési cím: " + error.Message);
+            }
+            if (error is ArgumentException && error.Message.Contains("OM_Azonosito"))
+            {
+                txtAzonosito.BorderBrush = Brushes.Red;
+                errorMessages.AppendLine("OM Azonosító: " + error.Message);
+            }
+           
+            if (error is ArgumentException && error.Message.Contains("SzuletesiDatum")) 
+            {
+                dpSzuletesiIdo.BorderBrush = Brushes.Red;
+                errorMessages.AppendLine("Születési Dátum: " + error.Message);
+            }
+            if (error is ArgumentException && error.Message.Contains("Magyar"))
+            {
+                txtMagyarPontok.BorderBrush = Brushes.Red;
+                errorMessages.AppendLine("Magyar : " + error.Message);
+            }
+            if (error is ArgumentException && error.Message.Contains("Matematika"))
+            {
+                txtMatekPontok.BorderBrush = Brushes.Red;
+                errorMessages.AppendLine("Matematika: " + error.Message);
+            }
+           
+
+            MessageBox.Show(errorMessages.ToString());
+        }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#007ACC"));
+            }
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is DatePicker datePicker)
+            {
+                if (datePicker.SelectedDate == null)
+                {
+                    datePicker.BorderBrush = Brushes.Red;
+                }
+                else
+                {
+                    datePicker.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#007ACC"));
+                }
+            }
         }
         private void txtRemoveWaterMark(object sender, RoutedEventArgs e)
         {
