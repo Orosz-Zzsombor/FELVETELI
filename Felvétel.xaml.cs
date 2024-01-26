@@ -153,43 +153,44 @@ namespace FELVETELI
                 }
             }
         }
-        private void DatePicker_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                var datePicker = sender as DatePicker;
-                if (datePicker != null)
-                {
-                    var request = new TraversalRequest(FocusNavigationDirection.Next);
-                    datePicker.MoveFocus(request);
+        /*   private void DatePicker_PreviewKeyDown(object sender, KeyEventArgs e)
+          {
+              if (e.Key == Key.Enter)
+              {
+                  var datePicker = sender as DatePicker;
+                  if (datePicker != null)
+                  {
+                      var request = new TraversalRequest(FocusNavigationDirection.Next);
+                      datePicker.MoveFocus(request);
 
-                    e.Handled = true; 
-                }
-            }
-        }
+                      e.Handled = true; 
+                  }
+              }
+          }
+          */
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (sender is TextBox textBox)
-            {
-                textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#007ACC"));
-            }
-        }
+          {
+              if (sender is TextBox textBox)
+              {
+                  textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#007ACC"));
+              }
+          }
 
-      /*  private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender is DatePicker datePicker)
-            {
-                if (datePicker.SelectedDate == null)
-                {
-                    datePicker.BorderBrush = Brushes.Red;
-                }
-                else
-                {
-                    datePicker.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#007ACC"));
-                }
-            }
-        }
-      */
+         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+          {
+              if (sender is DatePicker datePicker)
+              {
+                  if (datePicker.SelectedDate == null)
+                  {
+                      datePicker.BorderBrush = Brushes.Red;
+                  }
+                  else
+                  {
+                      datePicker.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#007ACC"));
+                  }
+              }
+          }
+      
         private void txtRemoveWaterMark(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox box)
