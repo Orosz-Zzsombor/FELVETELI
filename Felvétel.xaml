@@ -135,40 +135,40 @@
 
             <StackPanel Grid.Column="0" Margin="0,0,40,10">
                 <TextBlock Text="Név:" Style="{StaticResource ModernTextBlockStyle}"/>
-                <TextBox x:Name="txtNev" Style="{StaticResource ModernTextBoxStyle}" Text="Gipsz Jakab" GotFocus="txtRemoveWaterMark" TextChanged="TextBox_TextChanged"/>
+                <TextBox x:Name="txtNev" Style="{StaticResource ModernTextBoxStyle}" Text="Gipsz Jakab" GotFocus="txtRemoveWaterMark" TextChanged="TextBox_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown"/>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,40,10">
                 <TextBlock Text="Email:" Style="{StaticResource ModernTextBlockStyle}"/>
 
-                <TextBox x:Name="txtEmail" Style="{StaticResource ModernTextBoxStyle}" Text="example@gmail.com"  GotFocus="txtRemoveWaterMark" TextChanged="TextBox_TextChanged"/>
+                <TextBox x:Name="txtEmail" Style="{StaticResource ModernTextBoxStyle}" Text="example@gmail.com"  GotFocus="txtRemoveWaterMark" TextChanged="TextBox_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown"/>
             </StackPanel>
 
 
             <StackPanel Grid.Column="0" Margin="0,0,40,10" Grid.Row="2">
                 <TextBlock Text="Cím:" Style="{StaticResource ModernTextBlockStyle}"/>
-                <TextBox x:Name="txtCim" Style="{StaticResource ModernTextBoxStyle}" Text="Debrecen, Széchenyi u. 58."  GotFocus="txtRemoveWaterMark" TextChanged="TextBox_TextChanged"/>
+                <TextBox x:Name="txtCim" Style="{StaticResource ModernTextBoxStyle}" Text="Debrecen, Széchenyi u. 58."  GotFocus="txtRemoveWaterMark" TextChanged="TextBox_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="0,0,40,10">
                 <TextBlock Text="OM azonosító:" Style="{StaticResource ModernTextBlockStyle}"/>
-                <TextBox x:Name="txtAzonosito" Style="{StaticResource ModernTextBoxStyle}" Text="62519514862"  GotFocus="txtRemoveWaterMark" TextChanged="TextBox_TextChanged"/>
+                <TextBox x:Name="txtAzonosito" Style="{StaticResource ModernTextBoxStyle}" Text="62519514862"  GotFocus="txtRemoveWaterMark" TextChanged="TextBox_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="0,0,40,10" Grid.Row="1">
                 <TextBlock Text="Születési idő:" Style="{StaticResource ModernTextBlockStyle}"/>
-                <DatePicker x:Name="dpSzuletesiIdo" Style="{StaticResource ModernDatePickerStyle}" SelectedDate="2008-10-01" Background="#3E4451"  SelectedDateChanged="DatePicker_SelectedDateChanged" />
+                <DatePicker x:Name="dpSzuletesiIdo" Style="{StaticResource ModernDatePickerStyle}" SelectedDate="2008-10-01" Background="#3E4451"/>
 
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="0,0,40,10" Grid.Row="2">
                 <TextBlock Text="Magyar pontok:" Style="{StaticResource ModernTextBlockStyle}"/>
-                <TextBox x:Name="txtMagyarPontok" Style="{StaticResource PontokTextBoxStyle}" Text="50"  GotFocus="txtRemoveWaterMark"/>
+                <TextBox x:Name="txtMagyarPontok" Style="{StaticResource PontokTextBoxStyle}" Text="50"  GotFocus="txtRemoveWaterMark" PreviewKeyDown="TextBox_PreviewKeyDown"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="0,0,33,10" Grid.Row="2" HorizontalAlignment="Right" Width="175">
                 <TextBlock Text="Matek pontok:" Style="{StaticResource ModernTextBlockStyle}"/>
-                <TextBox x:Name="txtMatekPontok" Style="{StaticResource PontokTextBoxStyle}" Text="50" GotFocus="txtRemoveWaterMark" />
+                <TextBox x:Name="txtMatekPontok" Style="{StaticResource PontokTextBoxStyle}" Text="50" GotFocus="txtRemoveWaterMark"  PreviewKeyDown="TextBox_PreviewKeyDown"/>
             </StackPanel>
 
             <Button Grid.Column="2"  x:Name="btnModosit" Content="MÓDOSÍT" Style="{StaticResource ModernButtonStyle}"  Click="btnModosit_Click"/>

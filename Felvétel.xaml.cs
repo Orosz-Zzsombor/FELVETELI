@@ -32,13 +32,14 @@ namespace FELVETELI
         public Felvétel(Diak diak, bool modositas = false)
         {
             InitializeComponent();
-            txtAzonosito.Text = diak.OM_Azonosito;
+    
             txtNev.Text = diak.Neve;
-            txtCim.Text = diak.ErtesitesiCime;
             txtEmail.Text = diak.Email;
+            txtCim.Text = diak.ErtesitesiCime;
+            txtAzonosito.Text = diak.OM_Azonosito;   
             dpSzuletesiIdo.Text = diak.SzuletesiDatum.ToString("yyyy.MM.dd");
-            txtMatekPontok.Text = diak.Matematika.ToString();
             txtMagyarPontok.Text = diak.Magyar.ToString();
+            txtMatekPontok.Text = diak.Matematika.ToString();     
             felvetelizoAdatai = diak;
         }
      
@@ -52,13 +53,15 @@ namespace FELVETELI
         {
             try
             {
-                felvetelizoAdatai.OM_Azonosito = txtAzonosito.Text;
+             
                 felvetelizoAdatai.Neve = txtNev.Text;
-                felvetelizoAdatai.ErtesitesiCime = txtCim.Text;
                 felvetelizoAdatai.Email = txtEmail.Text;
+                felvetelizoAdatai.ErtesitesiCime = txtCim.Text;
+                felvetelizoAdatai.OM_Azonosito = txtAzonosito.Text;
                 felvetelizoAdatai.SzuletesiDatum = Convert.ToDateTime(dpSzuletesiIdo.Text);
-                felvetelizoAdatai.Matematika = int.Parse(txtMatekPontok.Text);
                 felvetelizoAdatai.Magyar = int.Parse(txtMagyarPontok.Text);
+                felvetelizoAdatai.Matematika = int.Parse(txtMatekPontok.Text);
+
           
                 this.Close() ;
 
@@ -76,11 +79,11 @@ namespace FELVETELI
             try
             {   
                 felvetelizoAdatai.Neve = txtNev.Text;
-                felvetelizoAdatai.ErtesitesiCime = txtCim.Text;
                 felvetelizoAdatai.Email = txtEmail.Text;
+                felvetelizoAdatai.ErtesitesiCime = txtCim.Text;
                 felvetelizoAdatai.SzuletesiDatum = Convert.ToDateTime(dpSzuletesiIdo.Text);
-                felvetelizoAdatai.Matematika = int.Parse(txtMatekPontok.Text);
                 felvetelizoAdatai.Magyar = int.Parse(txtMagyarPontok.Text);
+                felvetelizoAdatai.Matematika = int.Parse(txtMatekPontok.Text);
                 MessageBox.Show("Sikeres módosítás");
                 this.Close();
             
@@ -136,6 +139,34 @@ namespace FELVETELI
 
             MessageBox.Show(errorMessages.ToString());
         }
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+        
+                var textBox = sender as TextBox;
+                if (textBox != null)
+                {
+      
+                    var request = new TraversalRequest(FocusNavigationDirection.Next);
+                    textBox.MoveFocus(request);
+                }
+            }
+        }
+        private void DatePicker_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var datePicker = sender as DatePicker;
+                if (datePicker != null)
+                {
+                    var request = new TraversalRequest(FocusNavigationDirection.Next);
+                    datePicker.MoveFocus(request);
+
+                    e.Handled = true; 
+                }
+            }
+        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender is TextBox textBox)
@@ -144,7 +175,7 @@ namespace FELVETELI
             }
         }
 
-        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+      /*  private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is DatePicker datePicker)
             {
@@ -158,6 +189,7 @@ namespace FELVETELI
                 }
             }
         }
+      */
         private void txtRemoveWaterMark(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox box)

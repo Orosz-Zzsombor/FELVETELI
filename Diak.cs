@@ -51,18 +51,7 @@ namespace FELVETELI
                 this.magyar = magyar;
             }
 
-            public string OM_Azonosito
-            {
-                get => omAzonosito;
-                set
-                {
-                    if (value.All(char.IsDigit) && value.Length == 11 )
-                        omAzonosito = value;
-                    else
-                        throw new ArgumentException("Az OM azonosítónak 11 számjegyből kell állnia.",nameof(OM_Azonosito));
-                }
-            }
-
+    
         public string Neve
         {
             get => neve;
@@ -126,9 +115,20 @@ namespace FELVETELI
                         throw new ArgumentException("Az értesítési cím nem lehet üres.",nameof(ErtesitesiCime));
                 }
             }
+        public string OM_Azonosito
+        {
+            get => omAzonosito;
+            set
+            {
+                if (value.All(char.IsDigit) && value.Length == 11)
+                    omAzonosito = value;
+                else
+                    throw new ArgumentException("Az OM azonosítónak 11 számjegyből kell állnia.", nameof(OM_Azonosito));
+            }
+        }
 
-  
-            public DateTime SzuletesiDatum
+
+        public DateTime SzuletesiDatum
             {
                 get => szuletesiDatum;
                 set
