@@ -98,7 +98,7 @@ namespace FELVETELI
  
         private void HibaKezelo(Exception error)
         {
-            StringBuilder errorMessages = new StringBuilder("Hoppá!:\n");
+            StringBuilder errorMessages = new StringBuilder("Hibás érték!\n");
             if (error is ArgumentException && error.Message.Contains("Neve"))
             {
                 txtNev.BorderBrush = Brushes.Red;
@@ -168,6 +168,25 @@ namespace FELVETELI
               }
           }
           */
+        private void TextBox_EgeszSzamEllenorzo(object sender, TextCompositionEventArgs e)
+        {
+            if (!IsDigit(e.Text))
+            {
+                e.Handled = true; 
+            }
+        }
+
+        private bool IsDigit(string input)
+        {
+            foreach (char c in input)
+            {
+                if (!char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
           {
               if (sender is TextBox textBox)

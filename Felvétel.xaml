@@ -152,7 +152,7 @@
 
             <StackPanel Grid.Column="1" Margin="0,0,40,10">
                 <TextBlock Text="OM azonosító:" Style="{StaticResource ModernTextBlockStyle}"/>
-                <TextBox x:Name="txtAzonosito" Style="{StaticResource ModernTextBoxStyle}" Text="62519514862"  GotFocus="txtRemoveWaterMark" TextChanged="TextBox_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                <TextBox x:Name="txtAzonosito" Style="{StaticResource ModernTextBoxStyle}" Text="62519514862"  GotFocus="txtRemoveWaterMark" TextChanged="TextBox_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown" PreviewTextInput="TextBox_EgeszSzamEllenorzo"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="0,0,40,10" Grid.Row="1">
@@ -163,12 +163,12 @@
 
             <StackPanel Grid.Column="1" Margin="0,0,40,10" Grid.Row="2">
                 <TextBlock Text="Magyar pontok:" Style="{StaticResource ModernTextBlockStyle}"/>
-                <TextBox x:Name="txtMagyarPontok" Style="{StaticResource PontokTextBoxStyle}" Text="50"  GotFocus="txtRemoveWaterMark" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                <TextBox x:Name="txtMagyarPontok" Style="{StaticResource PontokTextBoxStyle}" Text="50"  GotFocus="txtRemoveWaterMark" PreviewKeyDown="TextBox_PreviewKeyDown" TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_EgeszSzamEllenorzo"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="0,0,33,10" Grid.Row="2" HorizontalAlignment="Right" Width="175">
                 <TextBlock Text="Matek pontok:" Style="{StaticResource ModernTextBlockStyle}"/>
-                <TextBox x:Name="txtMatekPontok" Style="{StaticResource PontokTextBoxStyle}" Text="50" GotFocus="txtRemoveWaterMark"  PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                <TextBox x:Name="txtMatekPontok" Style="{StaticResource PontokTextBoxStyle}" Text="50" GotFocus="txtRemoveWaterMark"  PreviewKeyDown="TextBox_PreviewKeyDown" TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_EgeszSzamEllenorzo"/>
             </StackPanel>
 
             <Button Grid.Column="2"  x:Name="btnModosit" Content="MÓDOSÍT" Style="{StaticResource ModernButtonStyle}"  Click="btnModosit_Click"/>
