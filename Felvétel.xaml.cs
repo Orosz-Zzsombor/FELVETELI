@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -180,13 +180,19 @@ namespace FELVETELI
         {
             foreach (char c in input)
             {
-                if (!char.IsDigit(c))
+                if (!char.IsDigit(c) && c != '-')
                 {
                     return false;
                 }
             }
+            if (input.Length > 1 && input[0] == '-')
+            {
+                return false;
+            }
+
             return true;
-        }
+        
+    }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
           {
               if (sender is TextBox textBox)
