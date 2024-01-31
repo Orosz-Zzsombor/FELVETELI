@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    
+ 
     var jsonData = [
         {
           "OM_Azonosito": "78655218932",
@@ -192,54 +192,65 @@ document.addEventListener('DOMContentLoaded', function () {
           tableBody.innerHTML = '';
   
           filteredData.forEach(function (row) {
+            var osszes = (row.Magyar + row.Matematika)
               var tr = document.createElement('tr');
               tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
                   '<td>' + row.Neve + '</td>' +
-                  '<td>' + row.ErtesitesiCime + '</td>' +
-                  '<td>' + row.Email + '</td>' +
-                  '<td>' + row.SzuletesiDatum + '</td>' +
                   '<td>' + row.Matematika + '</td>' +
-                  '<td>' + row.Magyar + '</td>';
+                  '<td>' + row.Magyar + '</td>' +
+                  '<td>' + osszes + '</td>';
   
               tableBody.appendChild(tr);
           });
       }
-  
-      function sortByColumn(columnName) {
-          filteredData.sort(function (a, b) {
-              var valueA = a[columnName];
-              var valueB = b[columnName];
-  
-              if (typeof valueA === 'string') {
-                  valueA = valueA.toUpperCase();
-                  valueB = valueB.toUpperCase();
-              }
-  
-              if (valueA < valueB) {
-                  return sortDirection[columnName] === 'asc' ? -1 : 1;
-              } else if (valueA > valueB) {
-                  return sortDirection[columnName] === 'asc' ? 1 : -1;
-              } else {
-                  return 0;
-              }
+      var searchButton = document.getElementById('searchButton');
+      var searchInput = document.getElementById('kereses');
+    
+      searchButton.addEventListener('click', function () {
+          var searchTerm = searchInput.value.toLowerCase();
+          filteredData = jsonData.filter(function (row) {
+              return row.Neve.toLowerCase().includes(searchTerm);
           });
-  
-          sortDirection[columnName] = sortDirection[columnName] === 'asc' ? 'desc' : 'asc';
           displayData();
-      }
-  
+      });
+    
+      function sortByColumn(columnName) {
+        filteredData.sort(function (a, b) {
+            var valueA, valueB;
+            if (columnName === 'Osszes') {
+                valueA = a.Matematika + a.Magyar;
+                valueB = b.Matematika + b.Magyar;
+            } else {
+                valueA = a[columnName];
+                valueB = b[columnName];
+            }
+    
+            if (valueA < valueB) {
+                return sortDirection[columnName] === 'asc' ? -1 : 1;
+            } else if (valueA > valueB) {
+                return sortDirection[columnName] === 'asc' ? 1 : -1;
+            } else {
+                return 0;
+            }
+        });
+    
+        sortDirection[columnName] = sortDirection[columnName] === 'asc' ? 'desc' : 'asc';
+        displayData();
+    }
       var tableHeaders = document.querySelectorAll('#jsonTable th');
       tableHeaders.forEach(function (header) {
           header.addEventListener('click', function () {
               var columnName = this.getAttribute('data-column');
+              
               sortByColumn(columnName);
           });
       });
   
       button.addEventListener('click', function () {
+
           var minimumPontszam = parseInt(minimumPontszamInput.value, 10) || 0;
           filteredData = jsonData.filter(function (row) {
-              return row.Matematika >= minimumPontszam;
+              return row.Matematika + row.Magyar >= minimumPontszam;
           });
           displayData();
       });
