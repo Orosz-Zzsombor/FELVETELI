@@ -210,20 +210,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
     jobbgomb.addEventListener('click',function(){
-      var tableBody = document.querySelector('#jsonTable tbody');
+      var tabla = document.querySelector('#masiktable tbody');
       var firstRowCells = tableBody.querySelector('tr:first-child').querySelectorAll('td');
       var values = Array.from(firstRowCells).map(cell => cell.textContent);
       var Emberunkertek = parseInt(values[5])+parseInt(values[6])
       var keresett;
-      var mennyi = 0;
+      tabla.innerHTML='';
       jsonData.forEach(function(row){
         keresett = parseInt(row.Magyar)+parseInt(row.Matematika)
         if (Emberunkertek<keresett)
         {
-          mennyi++;
+          
+                 tr = document.createElement('tr');
+                tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
+                                '<td>' + row.Neve + '</td>';
+                                tabla.appendChild(tr);
         }
     })
-    console.log(mennyi)
     }
     )
     button.addEventListener('click', function()
