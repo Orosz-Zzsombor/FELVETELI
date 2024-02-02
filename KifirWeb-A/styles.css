@@ -24,7 +24,22 @@ th, td {
     text-align: center;
 
 }
+h1{
+   
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 3rem;
 
+    
+}
+#title{
+    background-color: rgb(243, 243, 239);
+
+    text-align: center;
+    margin: auto;
+    margin-top:-30px;
+    padding: 20px;
+}
 
 th{
     background-image: linear-gradient(to bottom right, rgb(81, 105, 236), rgb(2, 30, 71));
