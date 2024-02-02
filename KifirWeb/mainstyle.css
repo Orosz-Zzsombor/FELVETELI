@@ -106,3 +106,6 @@ body {
     margin-top: auto; 
     text-align: center;
   }
+  .image-section p{
+    font-weight: bold;
+  }

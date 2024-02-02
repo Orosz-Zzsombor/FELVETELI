@@ -7,7 +7,7 @@ body {
 }
 
 table {
-    width: 50%;
+    width: 55%;
     margin-top: 20px;
     margin:auto;
     border-collapse: collapse;
@@ -26,9 +26,12 @@ th, td {
 }
 h1{
    
-    text-transform: uppercase;
-    font-weight: bolder;
     font-size: 3rem;
+    font-weight: 600;
+    background-image: conic-gradient(#29729c, #0e2677, #123786);
+    color: transparent;
+    background-clip: text;
+   
 
     
 }
@@ -149,4 +152,8 @@ hr{
     font-size: 1rem ;
     cursor: pointer;
     font-weight: bolder;
+}
+
+#back:hover{
+    background-image: linear-gradient(to bottom right, rgb(29, 51, 179), rgb(6, 29, 63));
 }

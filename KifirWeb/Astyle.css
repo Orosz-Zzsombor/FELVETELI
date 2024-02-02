@@ -71,3 +71,6 @@ tr:hover {
     cursor: pointer;
     font-weight: bolder;
 }
+#back:hover{
+    background-image: linear-gradient(to bottom right, rgb(29, 51, 179), rgb(6, 29, 63));
+}
