@@ -1,0 +1,140 @@
+
+  
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    width: 50%;
+    margin-top: 20px;
+    margin:auto;
+    border-collapse: collapse;
+    font-size: 1.5rem;
+    border: 3px solid black;
+}
+
+
+tr{
+    border-bottom: 3px solid gray;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+
+}
+h1{
+   
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 3rem;
+
+    
+}
+#title{
+    background-color: rgb(243, 243, 239);
+
+    text-align: center;
+    margin: auto;
+    margin-top:-30px;
+    padding: 20px;
+}
+
+th{
+    background-image: linear-gradient(to bottom right, rgb(81, 105, 236), rgb(2, 30, 71));
+    color:white;
+    border: 3px solid black;
+    text-transform: uppercase;
+    text-align: center;
+    
+}
+
+
+@media (max-width: 600px) {
+    th, td {
+        font-size: 12px;
+    }
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto; 
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.6rem;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    text-shadow: 1px 0px rgb(68, 67, 67);
+}
+
+input[type="number"] {
+    width: 100%;
+    font-size: larger;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+input[type="text"] {
+    width: 100%;
+    font-size: larger;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+input[type="button"] {
+    padding: 15px;
+    background-image: linear-gradient(to bottom right, rgb(56, 79, 211), rgb(7, 46, 105));
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem ;
+    cursor: pointer;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    form {
+        width: 100%;
+    }
+}
+tr:nth-child(even){
+    background-color: rgb(233, 236, 238);
+}
+tr:hover{
+    background-color: rgb(51, 102, 196);
+}
+th:hover{
+    color:rgb(163, 163, 165);
+}
+th:active{
+    color:rgb(102, 102, 104);
+}
+.selected {
+    background-color: lightblue; 
+  }
+
+input[type="button"]:hover{
+    background-image: linear-gradient(to bottom right, rgb(24, 49, 192), rgb(2, 21, 48));
+}
+hr{
+    border: 0;
+    height: 1px;
+    width: 40%;
+    position: relative;
+
+    background-color: black;
+    min-width: 400px;
+}  
