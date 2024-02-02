@@ -25,7 +25,7 @@ select {
 
 #button ,#jobbgomb {
     padding: 10px;
-    background-color: blue;
+    background-image: linear-gradient(to bottom right, rgb(81, 105, 236), rgb(2, 30, 71));
     color: white;
     border: none;
     border-radius: 5px;
@@ -48,10 +48,26 @@ th, td {
 }
 
 th {
-    background-color: blue ;
-    color: white;
+    background-image: linear-gradient(to bottom right, rgb(81, 105, 236), rgb(2, 30, 71));
+    color:white;
+    border: 3px solid black;
+    text-transform: uppercase;
+    text-align: center;
+    
 }
 
 tr:hover {
     background-color: lightblue;
+}
+#back{
+    float: left;
+    margin-top: -5rem;
+    padding: 10px;
+    background-image: linear-gradient(to bottom right, rgb(56, 79, 211), rgb(7, 46, 105));
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem ;
+    cursor: pointer;
+    font-weight: bolder;
 }
