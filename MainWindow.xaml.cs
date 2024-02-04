@@ -10,6 +10,8 @@ using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Windows.Documents;
 using System.Configuration;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace FELVETELI
 {
@@ -186,6 +188,112 @@ namespace FELVETELI
             else
             {
                 MessageBox.Show("Túl sok a kiválasztott elem a listában!");
+            }
+        }
+
+        private void btnAdatbazisbaImportal_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=FelveteliAdatbazis;";
+
+                if (dtgFelveteli.Items.Count > 0)
+                {
+                    MessageBoxResult result = MessageBox.Show("Az aktuális adatok törlődni fognak. Biztosan folytatja?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                    if (result == MessageBoxResult.No)
+                    {
+                        return;
+                    }
+                }
+
+                ObservableCollection<IFelvetelizo> importaltFelveteli = new ObservableCollection<IFelvetelizo>();
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT * FROM Diakok";
+                    using (MySqlCommand selectCommand = new MySqlCommand(selectQuery, connection))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(selectCommand))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+
+   
+                            foreach (DataRow row in dataTable.Rows)
+                            {
+                                Diak diak = new Diak();
+                                diak.ModositCSVSorral(string.Join(";", row.ItemArray));
+                                importaltFelveteli.Add(diak);
+                            }
+                        }
+                    }
+                }
+
+                felveteli.Clear();
+                foreach (IFelvetelizo item in importaltFelveteli)
+                {
+                    felveteli.Add(item);
+                }
+
+
+                dtgFelveteli.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hiba történt az adatok importálása közben: {ex.Message}");
+            }
+        }
+
+        private void btnKilep_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAdatbazisbaTolt_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=FelveteliAdatbazis;";
+
+                MessageBoxResult result = MessageBox.Show("Az aktuális tábla tartalma törlődni fog. Biztosan folytatja?", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.No)
+                {
+                    return;
+                }
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+
+                    string deleteQuery = "DELETE FROM Diakok";
+                    using (MySqlCommand deleteCommand = new MySqlCommand(deleteQuery, connection))
+                    {
+                        deleteCommand.ExecuteNonQuery();
+                    }
+
+                    foreach (Diak diak in felveteli)
+                    {
+                        string insertQuery = $"INSERT INTO Diakok (OM_Azonosito, Neve, ErtesitesiCime, Email, SzuletesiDatum, Matematika, Magyar) " +
+                                             $"VALUES ('{diak.OM_Azonosito}', '{diak.Neve}', '{diak.ErtesitesiCime}', '{diak.Email}', " +
+                                             $"'{diak.SzuletesiDatum:yyyy-MM-dd}', {diak.Matematika}, {diak.Magyar})";
+
+                        using (MySqlCommand insertCommand = new MySqlCommand(insertQuery, connection))
+                        {
+                            insertCommand.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Adatok sikeresen feltöltve az adatbázisba!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hiba történt az adatok feltöltése közben: {ex.Message}");
             }
         }
     }
