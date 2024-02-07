@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="D.css">
+    <script src="javaD.js" defer></script>
+</head>
+<body>
+    <div id="title">
+    <h1>MiniKifir - D</h1>
+    <a href="main.html"><button id="back">Vissza</button></a>
+</div>
+
+    <div class="container">
+        <form>
+            <label for="pminimum">Minimum pontszám:</label>
+            <input type="number" id="pminimum" name="pminimum" placeholder="0-100" min="0" max="100">
+            <input type="button" id="button" value="Listáz">
+        </form>
+        <form>
+            <label for="kereses">Név keresése</label>
+            <input type="text" id="kereses" name="kereses" placeholder="Gipsz Jakab">
+            <input type="button" id="searchButton" value="Keresés" >
+        </form>
+    </div>
+
+    <hr class="center-ball">
+  <table id="jsonTable">
+        <thead>
+            <tr>
+                <th class="sortable" data-column="OM_Azonosito">OM Azonosító</th>
+                <th class="sortable" data-column="Neve">Név</th>
+                <th class="sortable" data-column="Matematika">Matematika</th>
+                <th class="sortable" data-column="Magyar">Magyar</th>
+                <th class="sortable" data-column="Osszes">Összesen</th>
+            </tr>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+</body>
+</html>
