@@ -220,13 +220,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var searchInput = document.getElementById('kereses');
     
     searchButton.addEventListener('click', function () {
-        var searchTerm = searchInput.value.toLowerCase();
-        filteredData = jsonData.filter(function (row) {
-            return row.Neve.toLowerCase().includes(searchTerm);
-        });
-        displayData();
-    });
-
+      var searchTerm = searchInput.value.toLowerCase();
+      var minimumPontszam = parseInt(minimumPontszamInput.value, 10) || 0;
+      
+      filteredData = jsonData.filter(function (row) {
+          return row.Neve.toLowerCase().includes(searchTerm) && (row.Matematika + row.Magyar) >= minimumPontszam;
+      });
+      
+      displayData(filteredData);
+  });
     button.addEventListener('click', function () {
         var minimumPontszam = parseInt(minimumPontszamInput.value, 10) || 0;
         filteredData = jsonData.filter(function (row) {

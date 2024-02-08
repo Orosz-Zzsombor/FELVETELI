@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     }
-    OM.addEventListener('change',function(){
+    OM.addEventListener('input',function(){
       var OMertek = OM.value
       var Elemekszama=0;
       var MatekOssz=0;

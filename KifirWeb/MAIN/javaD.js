@@ -182,17 +182,18 @@ document.addEventListener('DOMContentLoaded', function () {
           "Magyar": 10
         }
       ]
+      document.getElementById("SelectedTitle").style.visibility = "hidden";
       var tableBody = document.querySelector('#jsonTable tbody');
-      var button = document.getElementById('button');
       var minimumPontszamInput = document.getElementById('pminimum');
       var sortDirection = {};
       var filteredData = jsonData.slice(); 
+      var selectedRow = null;
   
       function displayData() {
           tableBody.innerHTML = '';
   
           filteredData.forEach(function (row) {
-            var osszes = (row.Magyar + row.Matematika)
+              var osszes = row.Matematika + row.Magyar;
               var tr = document.createElement('tr');
               tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
                   '<td>' + row.Neve + '</td>' +
@@ -200,20 +201,66 @@ document.addEventListener('DOMContentLoaded', function () {
                   '<td>' + row.Magyar + '</td>' +
                   '<td>' + osszes + '</td>';
   
+              tr.addEventListener('click', function() {
+                  selectRow(row); 
+              });
+  
               tableBody.appendChild(tr);
           });
       }
+  
+      function generateCSV(row) {
+        /*var csvContent = "data:text/csv;charset=utf-8,";
+
+        data.forEach(function(row) {
+            var values = Object.values(row);
+            var csvRow = values.join(",");
+            csvContent += csvRow + "\r\n";
+        });
+
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "students.csv");
+        document.body.appendChild(link);
+        link.click();*/
+          var csv = Object.values(row).join(',');
+          return csv;
+      }
+  
+      function addToSelectedList(row) {
+          var selectedList = document.getElementById('selectedList');
+          var listItem = document.createElement('li');
+          document.getElementById("SelectedTitle").style.visibility = "visible";
+
+          listItem.textContent = generateCSV(row); 
+          selectedList.innerHTML = ''; 
+          selectedList.appendChild(listItem);
+      }
+  
+      function selectRow(row) {
+          if (selectedRow !== null) {
+              selectedRow.classList.remove('selected');
+          }
+          selectedRow = event.currentTarget;
+          selectedRow.classList.add('selected');
+          addToSelectedList(row);
+      }
+  
       var searchButton = document.getElementById('searchButton');
       var searchInput = document.getElementById('kereses');
-    
+      var button = document.getElementById('button');
+  
       searchButton.addEventListener('click', function () {
           var searchTerm = searchInput.value.toLowerCase();
+          var minimumPontszam = parseInt(minimumPontszamInput.value, 10) || 0;
+          
           filteredData = jsonData.filter(function (row) {
-              return row.Neve.toLowerCase().includes(searchTerm);
+              return row.Neve.toLowerCase().includes(searchTerm) && (row.Matematika + row.Magyar) >= minimumPontszam;
           });
-          displayData();
+          
+          displayData(filteredData);
       });
-    
       function sortByColumn(columnName) {
         filteredData.sort(function (a, b) {
             var valueA, valueB;
@@ -245,9 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
               sortByColumn(columnName);
           });
       });
-  
       button.addEventListener('click', function () {
-
           var minimumPontszam = parseInt(minimumPontszamInput.value, 10) || 0;
           filteredData = jsonData.filter(function (row) {
               return row.Matematika + row.Magyar >= minimumPontszam;
