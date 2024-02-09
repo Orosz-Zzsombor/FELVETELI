@@ -182,6 +182,8 @@ document.addEventListener('DOMContentLoaded', function () {
           "Magyar": 10
         }
       ]
+    
+
       document.getElementById("SelectedTitle").style.visibility = "hidden";
       var tableBody = document.querySelector('#jsonTable tbody');
       var minimumPontszamInput = document.getElementById('pminimum');
@@ -210,24 +212,49 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   
       function generateCSV(row) {
-        /*var csvContent = "data:text/csv;charset=utf-8,";
-
-        data.forEach(function(row) {
-            var values = Object.values(row);
-            var csvRow = values.join(",");
-            csvContent += csvRow + "\r\n";
-        });
-
-        var encodedUri = encodeURI(csvContent);
-        var link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "students.csv");
-        document.body.appendChild(link);
-        link.click();*/
-          var csv = Object.values(row).join(',');
+    
+          var csv = Object.values(row).join(';');
           return csv;
       }
+
+
+      function tableToCSV() {
+        var csv = '';
+        var rows = document.querySelectorAll('#jsonTable tr');
+    
+        rows.forEach(function (row) {
+            var rowData = [];
+            var cols = row.querySelectorAll('td');
+    
+            cols.forEach(function (col) {
+                rowData.push(col.textContent);
+            });
+    
+            csv += rowData.join(';') + '\n';
+        });
+    
+        return csv;
+    }
+
+    var saveButton = document.getElementById('btnSave');
+    saveButton.addEventListener('click', function () {
+      var csvContent = tableToCSV();
+      if(csvContent.length > 1){
+        var encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
+        var link = document.createElement('a');
+        link.setAttribute('href', encodedUri);
+        link.setAttribute('download', 'adatok.csv');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        alert("Sikeres mentés")
+      }else {
+        alert("Sikertelen mentés!\n Üres tábla!")
+      }
+   
   
+
+    });
       function addToSelectedList(row) {
           var selectedList = document.getElementById('selectedList');
           var listItem = document.createElement('li');
@@ -236,6 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
           listItem.textContent = generateCSV(row); 
           selectedList.innerHTML = ''; 
           selectedList.appendChild(listItem);
+          
       }
   
       function selectRow(row) {
