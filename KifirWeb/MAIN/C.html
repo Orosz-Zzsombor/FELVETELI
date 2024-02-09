@@ -19,14 +19,11 @@
             <label for="nev" style="margin-top: 10px;">Név:</label>
             <input type="text" name="nev" id="nev" >
             <div id="radiok">
-                <input type="radio" id="alap" name="STILUS" value="alap">
+                <input type="radio" id="alap" name="STILUS" onchange="Change(this)" checked value="alap">
                 <label for="alap">alap</label>
                 <br>
-                <input type="radio" id="komoly" name="STILUS" value="komoly">
-                <label for="html">komoly</label>
-                <br>
-                <input type="radio" id="kevés" name="STILUS" value="kevés">
-                <label for="kevés">kevés</label>
+                <input type="radio" id="komoly" name="STILUS" onchange="Change(this)"  value="komoly">
+                <label for="komoly">komoly</label>
             </div>
         </div>
 

@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var OM = document.getElementById('OM');
     var nev = document.getElementById('nev');
     var OMertek = OM.value
-    var Nevertek = nev.innerText;
+    var Nevertek = nev.value;
    
    
     var Elemekszama=0;
@@ -210,18 +210,57 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     nev.addEventListener('input',function()
     {
-      Nevertek = nev.innerHTML
-      console.log(Nevertek)
+      Nevertek = (nev.value).toLowerCase();
+      OMertek = OM.value;
+      Elemekszama=0;
+      MatekOssz=0;
+      MagyarOssz=0
+      tableBody.innerHTML=""
+      jsonData.forEach(function(row){
+        let tablaOM =row.OM_Azonosito;
+        let tablaNev = (row.Neve).toLowerCase();
+        if(tablaOM.startsWith(OMertek)&&tablaNev.startsWith(Nevertek.toLowerCase()))
+        {
+          Elemekszama++;
+          MatekOssz+=row.Matematika
+          MagyarOssz+=row.Magyar
+          var tr = document.createElement('tr');
+              tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
+                              '<td>' + row.Neve + '</td>' +
+                              '<td>' + row.ErtesitesiCime + '</td>' +
+                              '<td>' + row.Email + '</td>' +
+                              '<td>' + row.SzuletesiDatum + '</td>' +
+                              '<td>' + row.Matematika + '</td>' +
+                              '<td>' + row.Magyar + '</td>';
+              tableBody.appendChild(tr);
+        }
+      })
+      adatTable.innerHTML = ""
+      if (tableBody.innerHTML!="" ) {
+        adatTable.innerHTML = ""
+        var adatTr = document.createElement('tr');
+        adatTr.innerHTML ='<td>' + Elemekszama + '</td>' +
+                      '<td>' + MatekOssz/Elemekszama + '</td>' +
+                      '<td>' + MagyarOssz/Elemekszama + '</td>'+
+                      '<td>' + (MatekOssz+MagyarOssz)/Elemekszama + '</td>'; 
+        adatTable.appendChild(adatTr)
+      }
     }
     )
+
+    //console.log(document.querySelector('input[name="STILUS"]:checked').value); AAAAAAAAAAAAAAAAAAAAAAAA
     OM.addEventListener('input',function(){
        OMertek = OM.value;
-       console.log(OMertek)
+       Nevertek =  (nev.value).toLowerCase();
 
+        Elemekszama=0;
+     MatekOssz=0;
+     MagyarOssz=0
       tableBody.innerHTML=""
       jsonData.forEach(function(row){
         let tablaOM = row.OM_Azonosito
-        if(tablaOM.startsWith(OMertek)){
+        let tablaNev = (row.Neve).toLowerCase();
+        if(tablaOM.startsWith(OMertek)&&tablaNev.startsWith(Nevertek.toLowerCase())){
             Elemekszama++;
             MatekOssz+=row.Matematika
             MagyarOssz+=row.Magyar
@@ -252,13 +291,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }  
     )
 
-
+   
     displayData(0);
-
+    
     
 
 });
 
+/*
+function Change(ertek) {
+  var table = document.getElementById("jsonTable");
 
-
+  if (ertek.value == "alap") {
+    table.classList.remove("komoly");
+    table.classList.add("alap");
+  } else if (ertek.value == "komoly") {
+    table.classList.remove("alap");
+    table.classList.add("komoly");
+  }
+}
+*/
 
