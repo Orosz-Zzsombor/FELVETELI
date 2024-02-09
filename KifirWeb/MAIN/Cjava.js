@@ -185,11 +185,18 @@ document.addEventListener('DOMContentLoaded', function () {
     var tableBody = document.querySelector('#jsonTable tbody');
     var adatTable = document.querySelector('#adatTable tbody');
     var OM = document.getElementById('OM');
+    var nev = document.getElementById('nev');
+    var OMertek = OM.value
+    var Nevertek = nev.innerText;
+   
+   
+    var Elemekszama=0;
+    var MatekOssz=0;
+    var MagyarOssz=0
     function displayData()
     {
     
     jsonData.forEach(function (row) {
-        
         var tr = document.createElement('tr');
         tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
                         '<td>' + row.Neve + '</td>' +
@@ -198,24 +205,18 @@ document.addEventListener('DOMContentLoaded', function () {
                         '<td>' + row.SzuletesiDatum + '</td>' +
                         '<td>' + row.Matematika + '</td>' +
                         '<td>' + row.Magyar + '</td>';
-
-
         tableBody.appendChild(tr);
-        
-        
+      }  )
     }
-    
+    nev.addEventListener('input',function()
+    {
+      Nevertek = nev.innerHTML
+      console.log(Nevertek)
+    }
     )
-    
-
-
-    }
     OM.addEventListener('input',function(){
-      var OMertek = OM.value
-      var Elemekszama=0;
-      var MatekOssz=0;
-      var MagyarOssz=0;
-      
+       OMertek = OM.value;
+       console.log(OMertek)
 
       tableBody.innerHTML=""
       jsonData.forEach(function(row){

@@ -13,7 +13,18 @@ body {
     background-color: #fff;
     border-radius: 5px;
 }
-
+#bevitel{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 10rem;
+}
+#radiok{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    
+}
 label {
     display: block;
     margin-bottom: 10px;
@@ -40,7 +51,7 @@ select {
     background-color: #fff;
     border-radius: 5px;
 }
-
+#nev{}
 th, td {
     padding: 12px;
     text-align: center;
@@ -61,7 +72,6 @@ tr:hover {
 }
 #back{
     float: left;
-    margin-top: -5rem;
     padding: 10px;
     background-image: linear-gradient(to bottom right, rgb(56, 79, 211), rgb(7, 46, 105));
     color: white;

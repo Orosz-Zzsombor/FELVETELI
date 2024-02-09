@@ -8,13 +8,31 @@
 </head>
 <body>
  
-    <div id="listaz">
-   
-        <label for="OM">OM azonosító:</label>
-        <input type="number" name="OM" id="OM" >
-        <a href="main.html"><button id="back">Vissza</button></a>
-    </div>
+
     <div style="overflow-x: auto;">
+
+        <div id="listaz">
+            <a href="main.html"><button id="back">Vissza</button></a>
+            <div id="bevitel">
+            <label for="OM">OM azonosító:</label>
+            <input type="number" name="OM" id="OM" >
+            <label for="nev" style="margin-top: 10px;">Név:</label>
+            <input type="text" name="nev" id="nev" >
+            <div id="radiok">
+                <input type="radio" id="alap" name="STILUS" value="alap">
+                <label for="alap">alap</label>
+                <br>
+                <input type="radio" id="komoly" name="STILUS" value="komoly">
+                <label for="html">komoly</label>
+                <br>
+                <input type="radio" id="kevés" name="STILUS" value="kevés">
+                <label for="kevés">kevés</label>
+            </div>
+        </div>
+
+            
+           
+        </div>
     <table id="jsonTable">
         <thead>
             <tr>
