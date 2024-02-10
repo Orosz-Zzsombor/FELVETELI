@@ -254,8 +254,8 @@ document.addEventListener('DOMContentLoaded', function () {
        Nevertek =  (nev.value).toLowerCase();
 
         Elemekszama=0;
-     MatekOssz=0;
-     MagyarOssz=0
+     MatekOssz=0.0;
+     MagyarOssz=0.0
       tableBody.innerHTML=""
       jsonData.forEach(function(row){
         let tablaOM = row.OM_Azonosito
@@ -282,9 +282,9 @@ document.addEventListener('DOMContentLoaded', function () {
         adatTable.innerHTML = ""
         var adatTr = document.createElement('tr');
         adatTr.innerHTML ='<td>' + Elemekszama + '</td>' +
-                      '<td>' + MatekOssz/Elemekszama + '</td>' +
-                      '<td>' + MagyarOssz/Elemekszama + '</td>'+
-                      '<td>' + (MatekOssz+MagyarOssz)/Elemekszama + '</td>'; 
+                      '<td>' + Math.round((MatekOssz/Elemekszama)*10)/10 + '</td>' +
+                      '<td>' + Math.round((MagyarOssz/Elemekszama)*10)/10+ '</td>'+
+                      '<td>' + Math.round(((MatekOssz+MagyarOssz)/Elemekszama)*10)/10 + '</td>'; 
         adatTable.appendChild(adatTr)
       }
 
