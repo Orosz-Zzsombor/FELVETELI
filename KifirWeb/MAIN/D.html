@@ -6,6 +6,7 @@
     <title>Document</title>
    <link rel="stylesheet" href="D.css">
     <script src="javaD.js" defer></script>
+    
 </head>
 <body>
     <div id="title">
@@ -23,7 +24,13 @@
             <label for="kereses">Név keresése</label>
             <input type="text" id="kereses" name="kereses" placeholder="Gipsz Jakab">
             <input type="button" id="searchButton" value="Keresés" >
+            
         </form>
+        <form>
+            <label for="fontSlider">Betűméret állítása</label>
+            <input type="range" id="fontSlider" min="1" max="11" value="6">
+        </form>
+  
 
         
     </div>
@@ -32,6 +39,7 @@
         <ul id="selectedList"></ul>
     </div>
     <hr class="center-ball">
+    <div style="overflow-x: auto;">
   <table id="jsonTable">
         <thead>
             <tr>
@@ -46,9 +54,12 @@
         <tbody>
         </tbody>
     </table>
+</div>
     <form>
-        <label for="kereses">Mentés</label>
+      
         <input type="button" id="btnSave" value="Mentés">
+        
+
     </form>
 </body>
 </html>

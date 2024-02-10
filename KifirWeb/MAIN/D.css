@@ -4,6 +4,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+   background-image: url(layered-waves-haikei.svg);
+   background-size: cover; 
+   background-position: center; 
+   background-repeat: no-repeat;
+   background-attachment: fixed;
 }
 
 table {
@@ -36,12 +41,15 @@ h1{
 
     
 }
+
 #title {
-    background-color: rgb(243, 243, 239);
+
     text-align: center;
     padding: 20px;
     position: relative; 
     height: 100px; 
+    background-color: white;
+ 
 }
 
 
@@ -51,6 +59,7 @@ th{
     border: 3px solid black;
     text-transform: uppercase;
     text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
     
 }
 
@@ -104,7 +113,7 @@ input[type="button"] {
     width: 100%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     form {
         width: 100%;
         margin:auto;
@@ -118,6 +127,10 @@ input[type="button"] {
 tr:nth-child(even){
     background-color: rgb(233, 236, 238);
 }
+tr:nth-child(odd){
+    background-color: rgb(221, 221, 221);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 tr:hover{
     background-color: rgb(51, 102, 196);
 }
@@ -129,6 +142,7 @@ th:active{
 }
 .selected {
     background-color: lightblue; 
+
   }
 
 input[type="button"]:hover{
@@ -168,6 +182,7 @@ hr{
     justify-content: center; 
     align-items: center; 
     flex-direction: column; 
+    
 }
 #selectedData h2 {
     font-size: 1.5rem;
@@ -188,3 +203,22 @@ hr{
     margin-bottom: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+#fontSlider {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    height: 15px;
+    background: rgb(4, 13, 59);
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+    border-radius: 10px
+}
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none; 
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    
+  }

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
  
     var jsonData = [
         {
@@ -182,9 +182,9 @@ document.addEventListener('DOMContentLoaded', function () {
           "Magyar": 10
         }
       ]
-      var tableBody = document.querySelector('#jsonTable tbody');
-      var button = document.getElementById('button');
-      var minimumPontszamInput = document.getElementById('pminimum');
+      var tableBody = document.querySelector("#jsonTable tbody");
+      var button = document.getElementById("button");
+      var minimumPontszamInput = document.getElementById("pminimum");
 
       var filteredData = jsonData.slice(); 
   
@@ -201,25 +201,25 @@ document.addEventListener('DOMContentLoaded', function () {
             return 0;
         });
 
-        tableBody.innerHTML = '';
+        tableBody.innerHTML = "";
   
         filteredData.forEach(function (row) {
             var osszes = (row.Magyar + row.Matematika)
-            var tr = document.createElement('tr');
-            tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
-                '<td>' + row.Neve + '</td>' +
-                '<td>' + row.Matematika + '</td>' +
-                '<td>' + row.Magyar + '</td>' +
-                '<td>' + osszes + '</td>';
+            var tr = document.createElement("tr");
+            tr.innerHTML = "<td>" + row.OM_Azonosito + "</td>" +
+                "<td>" + row.Neve + "</td>" +
+                "<td>" + row.Matematika + "</td>" +
+                "<td>" + row.Magyar + "</td>" +
+                "<td>" + osszes + "</td>";
   
             tableBody.appendChild(tr);
         });
     }
     
-    var searchButton = document.getElementById('searchButton');
-    var searchInput = document.getElementById('kereses');
+    var searchButton = document.getElementById("searchButton");
+    var searchInput = document.getElementById("kereses");
     
-    searchButton.addEventListener('click', function () {
+    searchButton.addEventListener("click", function () {
       var searchTerm = searchInput.value.toLowerCase();
       var minimumPontszam = parseInt(minimumPontszamInput.value, 10) || 0;
       
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
       
       displayData(filteredData);
   });
-    button.addEventListener('click', function () {
+    button.addEventListener("click", function () {
         var minimumPontszam = parseInt(minimumPontszamInput.value, 10) || 0;
         filteredData = jsonData.filter(function (row) {
             return row.Matematika + row.Magyar >= minimumPontszam;

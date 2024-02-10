@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
  
     var jsonData = [
         {
@@ -185,25 +185,25 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
       document.getElementById("SelectedTitle").style.visibility = "hidden";
-      var tableBody = document.querySelector('#jsonTable tbody');
-      var minimumPontszamInput = document.getElementById('pminimum');
-      var sortDirection = {};
+      var tableBody = document.querySelector("#jsonTable tbody");
+      var minimumPontszamInput = document.getElementById("pminimum");
+  
       var filteredData = jsonData.slice(); 
       var selectedRow = null;
   
       function displayData() {
-          tableBody.innerHTML = '';
+          tableBody.innerHTML = "";
   
           filteredData.forEach(function (row) {
               var osszes = row.Matematika + row.Magyar;
-              var tr = document.createElement('tr');
-              tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
-                  '<td>' + row.Neve + '</td>' +
-                  '<td>' + row.Matematika + '</td>' +
-                  '<td>' + row.Magyar + '</td>' +
-                  '<td>' + osszes + '</td>';
+              var tr = document.createElement("tr");
+              tr.innerHTML = "<td>" + row.OM_Azonosito + "</td>" +
+                  "<td>" + row.Neve + "</td>" +
+                  "<td>" + row.Matematika + "</td>" +
+                  "<td>" + row.Magyar + "</td>" +
+                  "<td>" + osszes + "</td>";
   
-              tr.addEventListener('click', function() {
+              tr.addEventListener("dblclick", function() {
                   selectRow(row); 
               });
   
@@ -213,37 +213,33 @@ document.addEventListener('DOMContentLoaded', function () {
   
       function generateCSV(row) {
     
-          var csv = Object.values(row).join(';');
+          var csv = Object.values(row).join(";");
           return csv;
       }
 
 
       function tableToCSV() {
-        var csv = '';
-        var rows = document.querySelectorAll('#jsonTable tr');
+        var csv = "";
     
-        rows.forEach(function (row) {
-            var rowData = [];
-            var cols = row.querySelectorAll('td');
-    
-            cols.forEach(function (col) {
-                rowData.push(col.textContent);
-            });
-    
-            csv += rowData.join(';') + '\n';
+        csv += "\n"
+        document.querySelectorAll("li").forEach(element => {
+            csv += element.textContent.trim() + "\n";
+        });
+
+        filteredData.forEach(function(row) {
+            csv += Object.values(row).join(";") + "\n"; 
         });
     
         return csv;
     }
-
-    var saveButton = document.getElementById('btnSave');
-    saveButton.addEventListener('click', function () {
+    var saveButton = document.getElementById("btnSave");
+    saveButton.addEventListener("click", function () {
       var csvContent = tableToCSV();
       if(csvContent.length > 1){
-        var encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
-        var link = document.createElement('a');
-        link.setAttribute('href', encodedUri);
-        link.setAttribute('download', 'adatok.csv');
+        var encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "adatok.csv");
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -255,31 +251,43 @@ document.addEventListener('DOMContentLoaded', function () {
   
 
     });
-      function addToSelectedList(row) {
-          var selectedList = document.getElementById('selectedList');
-          var listItem = document.createElement('li');
-          document.getElementById("SelectedTitle").style.visibility = "visible";
+      var fontSlider = document.getElementById("fontSlider");
+      fontSlider.addEventListener("input", function() {
+      var fontSize = parseInt(this.value) * 2 + 10; 
+      document.querySelectorAll("#jsonTable th, #jsonTable td").forEach(element => {
+          element.style.fontSize = fontSize + "px";
+      });
+  });
 
-          listItem.textContent = generateCSV(row); 
-          selectedList.innerHTML = ''; 
-          selectedList.appendChild(listItem);
-          
-      }
-  
+  function addToSelectedList(row) {
+    var selectedList = document.getElementById("selectedList");
+    var listItem = document.createElement("li");
+    document.getElementById("SelectedTitle").style.visibility = "visible";
+
+    listItem.textContent = generateCSV(row);
+    selectedList.appendChild(listItem);
+
+    listItem.addEventListener("click", function () {
+        this.parentNode.removeChild(this);
+        if (selectedList.children.length === 0) {
+            document.getElementById("SelectedTitle").style.visibility = "hidden";
+        }
+    });
+}
       function selectRow(row) {
           if (selectedRow !== null) {
-              selectedRow.classList.remove('selected');
+              selectedRow.classList.remove("selected");
           }
           selectedRow = event.currentTarget;
-          selectedRow.classList.add('selected');
+          selectedRow.classList.add("selected");
           addToSelectedList(row);
       }
   
-      var searchButton = document.getElementById('searchButton');
-      var searchInput = document.getElementById('kereses');
-      var button = document.getElementById('button');
+      var searchButton = document.getElementById("searchButton");
+      var searchInput = document.getElementById("kereses");
+      var button = document.getElementById("button");
   
-      searchButton.addEventListener('click', function () {
+      searchButton.addEventListener("click", function () {
           var searchTerm = searchInput.value.toLowerCase();
           var minimumPontszam = parseInt(minimumPontszamInput.value, 10) || 0;
           
@@ -290,37 +298,33 @@ document.addEventListener('DOMContentLoaded', function () {
           displayData(filteredData);
       });
       function sortByColumn(columnName) {
-        filteredData.sort(function (a, b) {
-            var valueA, valueB;
-            if (columnName === 'Osszes') {
-                valueA = a.Matematika + a.Magyar;
-                valueB = b.Matematika + b.Magyar;
-            } else {
-                valueA = a[columnName];
-                valueB = b[columnName];
-            }
-    
-            if (valueA < valueB) {
-                return sortDirection[columnName] === 'asc' ? -1 : 1;
-            } else if (valueA > valueB) {
-                return sortDirection[columnName] === 'asc' ? 1 : -1;
-            } else {
-                return 0;
-            }
-        });
-    
-        sortDirection[columnName] = sortDirection[columnName] === 'asc' ? 'desc' : 'asc';
+        if (columnName === "Neve") {
+            filteredData.sort((a, b) => a.Neve.localeCompare(b.Neve));
+        } else {
+            filteredData.sort((a, b) => {
+                const valueA = columnName === "Osszes" ? a.Matematika + a.Magyar : a[columnName];
+                const valueB = columnName === "Osszes" ? b.Matematika + b.Magyar : b[columnName];
+                return valueA - valueB;
+            });
+        }
         displayData();
     }
-      var tableHeaders = document.querySelectorAll('#jsonTable th');
-      tableHeaders.forEach(function (header) {
-          header.addEventListener('click', function () {
-              var columnName = this.getAttribute('data-column');
-              
-              sortByColumn(columnName);
-          });
-      });
-      button.addEventListener('click', function () {
+    
+    document.querySelectorAll("#jsonTable th").forEach(header => {
+        let sortOrder = 1; 
+    
+        header.addEventListener("click", () => {
+            const columnName = header.getAttribute("data-column");
+            sortByColumn(columnName);
+            sortOrder *= -1;
+            if (sortOrder === -1) {
+                filteredData.reverse();
+            }
+            
+            displayData();
+        });
+    });
+      button.addEventListener("click", function () {
           var minimumPontszam = parseInt(minimumPontszamInput.value, 10) || 0;
           filteredData = jsonData.filter(function (row) {
               return row.Matematika + row.Magyar >= minimumPontszam;
