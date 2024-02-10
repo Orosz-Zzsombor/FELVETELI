@@ -184,12 +184,22 @@ document.addEventListener('DOMContentLoaded', function () {
       ]
     var tableBody = document.querySelector('#jsonTable tbody');
     var checkBox = document.getElementById('OM');
+    var masikTable = document.querySelector('#masiktable tbody');
+    jsonData.forEach(function (row) {
+        
+      var option = document.createElement('option')
+      option.innerHTML=row.OM_Azonosito;
+      checkBox.appendChild(option);
+      
+      
+  }
+  
+  )
     function displayData()
     {
     
     jsonData.forEach(function (row) {
         
-        var option = document.createElement('option')
         var tr = document.createElement('tr');
         tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
                         '<td>' + row.Neve + '</td>' +
@@ -201,8 +211,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         tableBody.appendChild(tr);
-        option.innerHTML=row.OM_Azonosito;
-        checkBox.appendChild(option);
         
         
     }
@@ -212,40 +220,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     }
-    checkBox.addEventListener('change',function(){
-      var tabla = document.querySelector('#masiktable tbody');
-      var firstRowCells = tableBody.querySelector('tr:first-child').querySelectorAll('td');
-      var values = Array.from(firstRowCells).map(cell => cell.textContent);
-      var Emberunkertek = parseInt(values[5])+parseInt(values[6])
-      var keresett;
-      tabla.innerHTML='';
-      var OM = document.getElementById('OM').value;
-      
-      jsonData.forEach(function(row){
-        
-        keresett = parseInt(row.Magyar)+parseInt(row.Matematika)
-        if (OM=='') {
-          table=""     
-        }
-        else if (Emberunkertek<keresett)
-        {
-          
-                 tr = document.createElement('tr');
-                tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
-                                '<td>' + row.Neve + '</td>';
-                                tabla.appendChild(tr);
-        }
-    })
-    }
-    )
     checkBox.addEventListener('change', function()
     {
-
+        var valasztottPontszam;
         var OM = document.getElementById('OM').value;
         jsonData.forEach(function(row){
             let tablaOM = row.OM_Azonosito
+
             if (OM==tablaOM) {
                 tableBody.innerHTML='';
+                valasztottPontszam =parseInt(row.Magyar+row.Matematika)
                 var tr = document.createElement('tr');
                 tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
                                 '<td>' + row.Neve + '</td>' +
@@ -254,9 +238,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 '<td>' + row.SzuletesiDatum + '</td>' +
                                 '<td>' + row.Matematika + '</td>' +
                                 '<td>' + row.Magyar + '</td>';
-                tableBody.appendChild(tr);
-                
-                
+                tableBody.appendChild(tr);      
             }
             else if(OM==''){
                 tableBody.innerHTML='';
@@ -264,6 +246,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 displayData(0)     
             }
 
+        })
+       masikTable.innerHTML =""
+        jsonData.forEach(function(row)
+        {
+    
+          var jelenlegiErtek = parseInt( row.Magyar+row.Matematika)
+          if (valasztottPontszam<jelenlegiErtek){
+
+            var tr = document.createElement('tr');
+            tr.innerHTML = '<td>' + row.OM_Azonosito + '</td>' +
+                                '<td>' + row.Neve + '</td>';
+             masikTable.appendChild(tr);
+            
+          }
+          else if (OM =="") {
+            tableBody.innerHTML='';
+                
+            displayData(0)     
+            
+          }
         })
         
     });

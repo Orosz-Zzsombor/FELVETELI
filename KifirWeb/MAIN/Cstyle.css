@@ -30,6 +30,16 @@ label {
     margin-bottom: 10px;
 }
 
+/*
+.alap{
+    background-color: red;
+}
+
+.komoly{
+    background-color: yellow;
+}
+*/
+
 select {
     padding: 8px;
 }
@@ -57,6 +67,8 @@ th, td {
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
+
+
 
 th {
     background-image: linear-gradient(to bottom right, rgb(81, 105, 236), rgb(2, 30, 71));
